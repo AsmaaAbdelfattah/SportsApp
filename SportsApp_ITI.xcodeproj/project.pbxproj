@@ -12,6 +12,7 @@
 		3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */; };
 		3D9B80FE298D42AC00D344E4 /* CustomSportCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80FC298D42AC00D344E4 /* CustomSportCollectionViewCell.xib */; };
 		3D9B8102298D4BEE00D344E4 /* LegeusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B8101298D4BED00D344E4 /* LegeusViewController.swift */; };
+		3DDA2712298DAE420060635D /* LeagusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDA2711298DAE420060635D /* LeagusData.swift */; };
 		8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F74F2989BA6C009473FC /* TableViewCell.swift */; };
 		8C08F7522989BA6C009473FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F7502989BA6C009473FC /* TableViewCell.xib */; };
 		8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F7532989C232009473FC /* FavTableViewController.swift */; };
@@ -39,6 +40,7 @@
 		3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSportCollectionViewCell.swift; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		3D9B80FC298D42AC00D344E4 /* CustomSportCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CustomSportCollectionViewCell.xib; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		3D9B8101298D4BED00D344E4 /* LegeusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LegeusViewController.swift; path = "SportsApp_ITI/ViewController/New Group/LegeusViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3DDA2711298DAE420060635D /* LeagusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagusData.swift; path = "SportsApp_ITI/ViewController/New Group/LeagusData.swift"; sourceTree = SOURCE_ROOT; };
 		50F7E089E93715FD4F1979C8 /* Pods_SportsApp_ITI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsApp_ITI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABD7B11CD95C2A3AD80D53 /* Pods-SportsApp_ITI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApp_ITI.release.xcconfig"; path = "Target Support Files/Pods-SportsApp_ITI/Pods-SportsApp_ITI.release.xcconfig"; sourceTree = "<group>"; };
 		8C08F74F2989BA6C009473FC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		8CFDF2DB29899533002DA2DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DDA2711298DAE420060635D /* LeagusData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */,
 				8CDE141C298C493300D94B9D /* recCollectionViewCell.swift in Sources */,
 				8CAB0902298C2EE30052C672 /* TeamCollectionViewCell.swift in Sources */,
+				3DDA2712298DAE420060635D /* LeagusData.swift in Sources */,
 				3D9B8102298D4BEE00D344E4 /* LegeusViewController.swift in Sources */,
 				8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */,
 				8CFDF2CF2989864E002DA2DF /* SportsApp_ITI.xcdatamodeld in Sources */,
