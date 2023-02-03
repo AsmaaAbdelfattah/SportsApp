@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wPd-cN-Cuc">
-                                <rect key="frame" x="8" y="47.666666666666693" width="359" height="716.99999999999989"/>
+                                <rect key="frame" x="8" y="47.666666666666686" width="359" height="717"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="717" id="StL-Sx-rp9"/>
@@ -60,33 +60,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legeus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Q6-LS9">
-                                <rect key="frame" x="147" y="47" width="81" height="37"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sRy-Yn-jYf">
-                                <rect key="frame" x="8" y="92" width="359" height="686"/>
+                                <rect key="frame" x="8" y="114" width="359" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="359" id="9ba-Gl-Mim"/>
-                                    <constraint firstAttribute="height" constant="686" id="Eve-3h-cw1"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Kab-gJ-vEx" id="ELP-Sb-eMl"/>
                                     <outlet property="delegate" destination="Kab-gJ-vEx" id="pgu-fT-hQt"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legeus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Q6-LS9">
+                                <rect key="frame" x="147" y="55" width="81" height="37"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HGf-hO-gTO"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="sRy-Yn-jYf" secondAttribute="trailing" constant="8" id="3h0-G6-PT5"/>
-                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="bottom" secondItem="HGf-hO-gTO" secondAttribute="bottom" id="bNN-yX-2Ec"/>
-                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="top" secondItem="HGf-hO-gTO" secondAttribute="top" id="jAk-1Z-bUC"/>
-                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="8" id="oq5-Nq-kNI"/>
-                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="centerX" secondItem="sAV-AW-FUC" secondAttribute="centerX" id="rN5-HV-4Si"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="bottom" secondItem="HGf-hO-gTO" secondAttribute="bottom" id="96T-oS-lgT"/>
+                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="centerX" secondItem="sAV-AW-FUC" secondAttribute="centerX" id="Ap8-Ac-0hb"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="8" id="JLB-AS-5bm"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="top" secondItem="5dT-Q6-LS9" secondAttribute="bottom" constant="22" id="ZBm-1a-CQ2"/>
+                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="sRy-Yn-jYf" secondAttribute="trailing" constant="8" id="cl2-Yf-SKl"/>
+                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="top" secondItem="HGf-hO-gTO" secondAttribute="top" constant="8" id="hgH-dP-X9X"/>
                         </constraints>
                     </view>
                     <connections>

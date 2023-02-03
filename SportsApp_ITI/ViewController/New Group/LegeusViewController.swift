@@ -59,4 +59,12 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
+        
+        let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
+        legeusDetailsObj.modalPresentationStyle = .fullScreen
+        self.present(legeusDetailsObj , animated: true, completion: nil)
+    }
 }
