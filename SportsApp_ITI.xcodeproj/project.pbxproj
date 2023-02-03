@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80F7298D408700D344E4 /* SportsViewController.swift */; };
+		3D9B80FA298D418700D344E4 /* splash3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80F9298D418700D344E4 /* splash3.gif */; };
+		3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */; };
+		3D9B80FE298D42AC00D344E4 /* CustomSportCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80FC298D42AC00D344E4 /* CustomSportCollectionViewCell.xib */; };
+		3D9B8102298D4BEE00D344E4 /* LegeusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B8101298D4BED00D344E4 /* LegeusViewController.swift */; };
 		8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F74F2989BA6C009473FC /* TableViewCell.swift */; };
 		8C08F7522989BA6C009473FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F7502989BA6C009473FC /* TableViewCell.xib */; };
 		8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F7532989C232009473FC /* FavTableViewController.swift */; };
@@ -29,6 +34,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D9B80F7298D408700D344E4 /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportsViewController.swift; path = "SportsApp_ITI/ViewController/New Group/SportsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3D9B80F9298D418700D344E4 /* splash3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splash3.gif; sourceTree = "<group>"; };
+		3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSportCollectionViewCell.swift; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		3D9B80FC298D42AC00D344E4 /* CustomSportCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CustomSportCollectionViewCell.xib; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		3D9B8101298D4BED00D344E4 /* LegeusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LegeusViewController.swift; path = "SportsApp_ITI/ViewController/New Group/LegeusViewController.swift"; sourceTree = SOURCE_ROOT; };
 		50F7E089E93715FD4F1979C8 /* Pods_SportsApp_ITI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsApp_ITI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABD7B11CD95C2A3AD80D53 /* Pods-SportsApp_ITI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApp_ITI.release.xcconfig"; path = "Target Support Files/Pods-SportsApp_ITI/Pods-SportsApp_ITI.release.xcconfig"; sourceTree = "<group>"; };
 		8C08F74F2989BA6C009473FC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -69,6 +79,9 @@
 		8C037789298C885B00B0CECF /* SportsCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				3D9B80F7298D408700D344E4 /* SportsViewController.swift */,
+				3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */,
+				3D9B80FC298D42AC00D344E4 /* CustomSportCollectionViewCell.xib */,
 			);
 			path = SportsCollectionView;
 			sourceTree = "<group>";
@@ -76,6 +89,7 @@
 		8C03778A298C887200B0CECF /* LeaguesViewContrroller */ = {
 			isa = PBXGroup;
 			children = (
+				3D9B8101298D4BED00D344E4 /* LegeusViewController.swift */,
 			);
 			path = LeaguesViewContrroller;
 			sourceTree = "<group>";
@@ -116,6 +130,7 @@
 		8C03778E298C89F300B0CECF /* SplashScreen */ = {
 			isa = PBXGroup;
 			children = (
+				3D9B80F9298D418700D344E4 /* splash3.gif */,
 				8CFDF2C82989864E002DA2DF /* ViewController.swift */,
 			);
 			path = SplashScreen;
@@ -271,8 +286,10 @@
 				8CAB0903298C2EE30052C672 /* TeamCollectionViewCell.xib in Resources */,
 				8C08F7522989BA6C009473FC /* TableViewCell.xib in Resources */,
 				8CFDF2D129898652002DA2DF /* Assets.xcassets in Resources */,
+				3D9B80FE298D42AC00D344E4 /* CustomSportCollectionViewCell.xib in Resources */,
 				8CFDF2CC2989864E002DA2DF /* Main.storyboard in Resources */,
 				8CFDF2DF29899627002DA2DF /* FavouriteStoryboard.storyboard in Resources */,
+				3D9B80FA298D418700D344E4 /* splash3.gif in Resources */,
 				8CDE1419298C456B00D94B9D /* comCollectionViewCell.xib in Resources */,
 				8CDE141D298C493300D94B9D /* recCollectionViewCell.xib in Resources */,
 			);
@@ -327,14 +344,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */,
 				8CFDF2C92989864E002DA2DF /* ViewController.swift in Sources */,
 				8CFDF2C52989864E002DA2DF /* AppDelegate.swift in Sources */,
 				8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */,
 				8CE1679B298AB80E005A5930 /* DetailsLeagueController.swift in Sources */,
 				8CFDF2C72989864E002DA2DF /* SceneDelegate.swift in Sources */,
 				8CDE1418298C456B00D94B9D /* comCollectionViewCell.swift in Sources */,
+				3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */,
 				8CDE141C298C493300D94B9D /* recCollectionViewCell.swift in Sources */,
 				8CAB0902298C2EE30052C672 /* TeamCollectionViewCell.swift in Sources */,
+				3D9B8102298D4BEE00D344E4 /* LegeusViewController.swift in Sources */,
 				8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */,
 				8CFDF2CF2989864E002DA2DF /* SportsApp_ITI.xcdatamodeld in Sources */,
 			);
