@@ -6,12 +6,30 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var gifImg: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
+        gifImg.backgroundColor = .black
+        gifImg.layer.cornerRadius = 100
+        do {
+            let gif = try UIImage(gifName: "splash3.gif")
+            self.gifImg.setGifImage(gif, loopCount: -1) // Will loop forever
+        } catch {
+            print(error)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+           
+            self.performSegue(withIdentifier: "initial", sender: nil)
+        }
+        
     }
 
 
