@@ -7,9 +7,9 @@
 
 import UIKit
 import CoreData
-
+import Reachability
 class FavTableViewController: UITableViewController {
-
+    var network : Reachability?
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
@@ -97,10 +97,24 @@ class FavTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
-        
-        let view = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
-        view.modalPresentationStyle = .fullScreen
-        self.present(view , animated: true, completion: nil)
+        network = Reachability.forInternetConnection()
+        if network!.isReachable(){
+            network!.isReachableViaWiFi()
+            print("connected")
+            let view = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
+            view.modalPresentationStyle = .fullScreen
+            self.present(view , animated: true, completion: nil)
+          
+             }
+        else{
+            print("Not Connected")
+           //alert
+            let alert = UIAlertController(title: "Internet Connection Not Available", message: "Please Turn on Your Connection", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+     
+     
     }
 
     /*

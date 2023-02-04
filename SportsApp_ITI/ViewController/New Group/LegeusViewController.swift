@@ -8,10 +8,12 @@
 import UIKit
 
 class LegeusViewController: UIViewController {
-
+    
     
     @IBOutlet weak var LegeusTableVeiw: UITableView!
-    
+    var networkService : NetworkService?
+    var responseArr : LeguesData?
+    var url : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,9 +21,9 @@ class LegeusViewController: UIViewController {
         
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         LegeusTableVeiw.register(nib, forCellReuseIdentifier: "customCell")
+        
     }
 }
-
 extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,16 +34,28 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        print("/////\(indexPath.row)/////////")
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
+        networkService = NetworkService()
+        networkService?.fetch(url:url ,compiletionHandler:
+        { request in
+            DispatchQueue.main.async { [self] in
+                
+                self.responseArr = request ?? nil
+                self.LegeusTableVeiw.reloadData()
+                
+            }
+          
+        })
+ 
         
         cell.layer.borderWidth = CGFloat(2)
         cell.layer.cornerRadius = CGFloat(10)
         
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
-        cell.leagueImg.image = UIImage(named: "youtube.png")
-        cell.leagueName.text = "Try"
+        cell.leagueImg.image = UIImage(named: responseArr?.result[indexPath.row].league_logo ?? "youtube.png")
+        cell.leagueName.text = responseArr?.result[indexPath.row].league_name
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
         cell.leagueImg?.clipsToBounds = true
        
@@ -52,6 +66,7 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         cell.YTIcon?.layer.borderColor = UIColor.white.cgColor
         cell.YTIcon?.layer.masksToBounds = false
+      
         return cell
     }
     
