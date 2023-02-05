@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LegeusViewController: UIViewController {
     
     
     @IBOutlet weak var LegeusTableVeiw: UITableView!
     var networkService : NetworkService?
-    var responseArr : LeguesData?
+    var responseArr : [Leagus]?
     var url : String?
+    var viewModel : ViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,20 @@ class LegeusViewController: UIViewController {
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         LegeusTableVeiw.register(nib, forCellReuseIdentifier: "customCell")
         
+       viewModel = ViewModel()
+        viewModel?.getLeague(url: url ?? "")
+        viewModel?.bindResultToViewController = {() in
+            self.renderView()
+        }
+        self.LegeusTableVeiw.reloadData()
+        
+    }
+    
+    func renderView(){
+        DispatchQueue.main.async {
+            self.responseArr = self.viewModel?.resultLeagues
+            self.LegeusTableVeiw.reloadData()
+        }
     }
 }
 extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
@@ -30,23 +46,23 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return responseArr?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("/////\(indexPath.row)/////////")
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-        networkService = NetworkService()
-        networkService?.fetch(url:url ,compiletionHandler:
-        { request in
-            DispatchQueue.main.async { [self] in
-                
-                self.responseArr = request ?? nil
-                self.LegeusTableVeiw.reloadData()
-                
-            }
-          
-        })
+//        networkService = NetworkService()
+//        networkService?.fetch(url:url ,compiletionHandler:
+//        { request in
+//            DispatchQueue.main.async { [self] in
+//
+//                self.responseArr = request ?? nil
+//                self.LegeusTableVeiw.reloadData()
+//
+//            }
+//
+//        })
  
         
         cell.layer.borderWidth = CGFloat(2)
@@ -54,8 +70,9 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
-        cell.leagueImg.image = UIImage(named: responseArr?.result[indexPath.row].league_logo ?? "youtube.png")
-        cell.leagueName.text = responseArr?.result[indexPath.row].league_name
+        cell.leagueImg.kf.setImage(with: URL(string: (responseArr?[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        //cell.leagueImg.image = UIImage(named: responseArr?[indexPath.row].league_logo ?? "youtube.png")
+        cell.leagueName.text = responseArr?[indexPath.row].league_name
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
         cell.leagueImg?.clipsToBounds = true
        
@@ -79,7 +96,10 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
+        
         legeusDetailsObj.modalPresentationStyle = .fullScreen
+        
+        legeusDetailsObj.league = responseArr?[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
 }
