@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , UICollectionViewDataSource{
+    
+    var leagueFromCoreData : Array<NSManagedObject>!
+    
+    var managedContext : NSManagedObjectContext!
+    
+    var league : Leagus?
     
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var teamCollection: UICollectionView!
@@ -19,6 +26,10 @@ class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICo
     var stateSelected = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        self.managedContext = appDelegate.persistentContainer.viewContext
 
         // Do any additional setup after loading the view.
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
@@ -42,6 +53,19 @@ class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICo
         if(stateSelected == 0)
         {
             favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+            
+            let entity = NSEntityDescription.entity(forEntityName: "League", in: managedContext)
+            
+            let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
+            
+            leagues.setValue(league?.league_key, forKey: "league_key")
+            leagues.setValue(league?.league_name, forKey: "league_name")
+            leagues.setValue(league?.league_logo, forKey: "league_logo")
+            do{
+                try managedContext.save()
+            }catch let error {
+                print (error)
+            }
           
             stateSelected += 1
         }

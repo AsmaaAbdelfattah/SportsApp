@@ -8,13 +8,29 @@
 import UIKit
 import CoreData
 import Reachability
+
 class FavTableViewController: UITableViewController {
+    
+    var managedContext : NSManagedObjectContext!
+    
+    var leagueFromCoreData : Array<NSManagedObject>!
+    //var leaguesFromCoreData : Array<Leagus> = []
+    
     var network : Reachability?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        self.managedContext = appDelegate.persistentContainer.viewContext
+        
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
               self.tableView.register(nib, forCellReuseIdentifier: "customCell")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchDataToCoreData()
     }
 
  
@@ -27,7 +43,7 @@ class FavTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 15
+        return leagueFromCoreData.count
     }
 
    
@@ -37,7 +53,7 @@ class FavTableViewController: UITableViewController {
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
         cell.leagueImg.image = UIImage(named: "youtube.png")
-        cell.leagueName.text = "Try"
+        cell.leagueName.text = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as? String
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
         cell.leagueImg?.clipsToBounds = true
        
@@ -117,29 +133,19 @@ class FavTableViewController: UITableViewController {
      
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    func fetchDataToCoreData() {
+    
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "League")
+        
+        do{
+            self.leagueFromCoreData = try self.managedContext.fetch(fetchRequest)
+           
+        } catch let error {
+            print (error)
+        }
+        
+        self.tableView.reloadData()
+       
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

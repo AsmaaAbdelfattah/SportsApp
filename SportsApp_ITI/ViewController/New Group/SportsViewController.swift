@@ -11,12 +11,17 @@ class SportsViewController: UIViewController {
 
     var sportsImg: [String]?
     var sportsName: [String]?
-    var leaguesUrl = ["https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
+    var leagues : [Leagus]?
+    var viewModel : ViewModel!
+    
+    var leaguesUrl =
+    ["https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
         "https://apiv2.allsportsapi.com/basketball/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
       "https://apiv2.allsportsapi.com/cricket/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
       "https://apiv2.allsportsapi.com/hockey/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
        "https://apiv2.allsportsapi.com/baseball/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8",
        "https://apiv2.allsportsapi.com/amircanfootball/?met=Leagues&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8"]
+    
     @IBOutlet weak var Sportscollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -25,14 +30,20 @@ class SportsViewController: UIViewController {
         sportsImg = ["football.jpg" , "basketball.jpg" , "Cricket.jpg" , "Hockey.jpeg" , "Baseball.jpeg" , "AmericanFootball.jpeg"]
         
         sportsName = ["Football" , "Basketball" , "Cricket" , "Hockey" , "Baseball" , "AmericanFootball"]
+        
 
         let nib = UINib(nibName: "CustomSportCollectionViewCell", bundle: nil)
         Sportscollection.register(nib, forCellWithReuseIdentifier: "cell")
+        
+        
+        
     }
+    
 
 }
 
 extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,6 +73,8 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         if(indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5){
                           let alert = UIAlertController(title: "We Are Sorry!", message: "This Sport Not available", preferredStyle: UIAlertController.Style.alert)
                           alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
@@ -69,7 +82,9 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         }
         else{
             let legeusViewControllerObj : LegeusViewController = self.storyboard?.instantiateViewController(withIdentifier: "legeus") as! LegeusViewController
-            legeusViewControllerObj.url=leaguesUrl[indexPath.row]
+            legeusViewControllerObj.url = leaguesUrl[indexPath.row]
+            //legeusViewControllerObj.responseArr = leagues
+            
             self.navigationController?.pushViewController(legeusViewControllerObj, animated: true)
         }}
 
