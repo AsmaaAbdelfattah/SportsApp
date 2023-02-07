@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , UICollectionViewDataSource{
+class DetailsLeagueController: UIViewController {
     
     var leagueFromCoreData : Array<NSManagedObject>!
     
@@ -75,6 +75,11 @@ class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICo
             stateSelected = 0
         }
     }
+   
+   
+
+}
+extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == comingCollection){
             return 15
@@ -92,8 +97,8 @@ class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(collectionView == comingCollection){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "coming", for: indexPath) as! comCollectionViewCell
-            cell.team1.image =  UIImage(named: "liverpool.png")
-            cell.team2.image =  UIImage(named:"manc.png")
+            cell.team1.image =  UIImage(named: "real.png")
+            cell.team2.image =  UIImage(named:"real.png")
            return cell
         }
         else if(collectionView == recentComing){
@@ -119,13 +124,19 @@ class DetailsLeagueController: UIViewController ,UICollectionViewDelegate , UICo
 
          }
 
-         func collectionView(_ collectionView: UICollectionView,
-                             layout collectionViewLayout: UICollectionViewLayout,
-                             minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-             return 5.0
-         }
+//         func collectionView(_ collectionView: UICollectionView,
+//                             layout collectionViewLayout: UICollectionViewLayout,
+//                             minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//             return 4.0
+//         }
 
-     
-   
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(collectionView == teamCollection){
+            let TeamViewControllerObj : TeamViewController = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamViewController
+            
+            TeamViewControllerObj.modalPresentationStyle = .fullScreen
+            self.present(TeamViewControllerObj, animated: true, completion: nil)
+        }
+        
+    }
 }
