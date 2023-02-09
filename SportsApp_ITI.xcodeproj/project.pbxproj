@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D7F21D22994F935006B5320 /* NetworkServiceForTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F21D12994F935006B5320 /* NetworkServiceForTeams.swift */; };
+		3D7F21D42994FE3F006B5320 /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F21D32994FE3F006B5320 /* EventsData.swift */; };
+		3D7F21D62994FFDF006B5320 /* NetworkServicesForEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F21D52994FFDF006B5320 /* NetworkServicesForEvents.swift */; };
 		3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80F7298D408700D344E4 /* SportsViewController.swift */; };
 		3D9B80FA298D418700D344E4 /* splash3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80F9298D418700D344E4 /* splash3.gif */; };
 		3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D7F21D12994F935006B5320 /* NetworkServiceForTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceForTeams.swift; sourceTree = "<group>"; };
+		3D7F21D32994FE3F006B5320 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
+		3D7F21D52994FFDF006B5320 /* NetworkServicesForEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServicesForEvents.swift; sourceTree = "<group>"; };
 		3D9B80F7298D408700D344E4 /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportsViewController.swift; path = "SportsApp_ITI/ViewController/New Group/SportsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3D9B80F9298D418700D344E4 /* splash3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splash3.gif; sourceTree = "<group>"; };
 		3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSportCollectionViewCell.swift; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -90,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				8C7BC472298E69C200F31C08 /* NetworkService.swift */,
+				3D7F21D12994F935006B5320 /* NetworkServiceForTeams.swift */,
+				3D7F21D52994FFDF006B5320 /* NetworkServicesForEvents.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 				3DA8AFC9298FC43100ACD3FF /* Services */,
 				3DDA2711298DAE420060635D /* LeagusData.swift */,
 				8C8494BA2992E9D800DCAE4A /* TeamData.swift */,
+				3D7F21D32994FE3F006B5320 /* EventsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,12 +379,15 @@
 				8C8494B92992E5A300DCAE4A /* TeamViewController.swift in Sources */,
 				3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */,
 				8CFDF2C92989864E002DA2DF /* ViewController.swift in Sources */,
+				3D7F21D22994F935006B5320 /* NetworkServiceForTeams.swift in Sources */,
+				3D7F21D62994FFDF006B5320 /* NetworkServicesForEvents.swift in Sources */,
 				8CFDF2C52989864E002DA2DF /* AppDelegate.swift in Sources */,
 				8C8494BB2992E9D800DCAE4A /* TeamData.swift in Sources */,
 				8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */,
 				8CE1679B298AB80E005A5930 /* DetailsLeagueController.swift in Sources */,
 				8CFDF2C72989864E002DA2DF /* SceneDelegate.swift in Sources */,
 				3DA8AFCB298FCD7200ACD3FF /* ViewModel.swift in Sources */,
+				3D7F21D42994FE3F006B5320 /* EventsData.swift in Sources */,
 				8CDE1418298C456B00D94B9D /* comCollectionViewCell.swift in Sources */,
 				3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */,
 				8CDE141C298C493300D94B9D /* recCollectionViewCell.swift in Sources */,

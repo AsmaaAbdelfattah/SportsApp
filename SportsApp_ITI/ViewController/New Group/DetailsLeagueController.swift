@@ -7,12 +7,20 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class DetailsLeagueController: UIViewController {
     
     var leagueFromCoreData : Array<NSManagedObject>!
     
     var managedContext : NSManagedObjectContext!
+    
+    var networkfromteams : ServicesForTeams = NetworkServiceForTeams()
+    var networkfromsevices: ServicesForEvents = NetworkServiceForEvents()
+    
+    var teams : [Teams]?
+    var upcomingEvents : [Events]?
+    var latestEvents : [Events]?
     
     var league : Leagus?
     
@@ -26,6 +34,7 @@ class DetailsLeagueController: UIViewController {
     var stateSelected = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        workWithDispatchQueue()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -82,13 +91,13 @@ class DetailsLeagueController: UIViewController {
 extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == comingCollection){
-            return 15
+            return upcomingEvents?.count ?? 0
         }
-        else if(comingCollection == recentComing){
-            return 10
+        else if(collectionView == recentComing){
+            return latestEvents?.count ?? 0
         }
      
-            return 5
+        return teams?.count ?? 0
       
     }
     
@@ -97,21 +106,34 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(collectionView == comingCollection){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "coming", for: indexPath) as! comCollectionViewCell
-            cell.team1.image =  UIImage(named: "real.png")
-            cell.team2.image =  UIImage(named:"real.png")
+            //cell.team1.image =  UIImage(named: "real.png")
+            //cell.team2.image =  UIImage(named:"real.png")
+            cell.team1.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            
+            cell.team2.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
            return cell
         }
         else if(collectionView == recentComing){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recent", for: indexPath) as! recCollectionViewCell
-            cell.firstTeam.image = UIImage(named:"real.png")
-            cell.secondTeam.image =  UIImage(named:"sp.png")
-            cell.score.text = "3 : 0"
+            //cell.firstTeam.image = UIImage(named:"real.png")
+            //cell.secondTeam.image =  UIImage(named:"sp.png")
+            cell.firstTeam.kf.setImage(with: URL(string: latestEvents?[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            
+            cell.secondTeam.kf.setImage(with: URL(string: latestEvents?[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            
+            //cell.score.text = "3 : 0"
+            
+            cell.score.text = latestEvents?[indexPath.row].event_final_result
             return cell
         }
     
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "team", for: indexPath) as! TeamCollectionViewCell
-        cell.teamImg.image = UIImage(named:"pyramids.png")
-        cell.teamName.text = "Pyramids"
+        //cell.teamImg.image = UIImage(named:"pyramids.png")
+        //cell.teamName.text = "Pyramids"
+        cell.teamName.text = teams?[indexPath.row].team_name
+        
+        cell.teamImg.kf.setImage(with: URL(string: teams?[indexPath.row].team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        
            return cell
        
     }
@@ -138,5 +160,45 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             self.present(TeamViewControllerObj, animated: true, completion: nil)
         }
         
+    }
+    
+    func workWithDispatchQueue () {
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        
+        self.networkfromteams.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Teams&?met=Leagues&leagueId=3&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+         
+            self.teams = result ?? []
+             
+         
+            group.leave()
+        }
+        
+        group.enter()
+         
+        self.networkfromsevices.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2023-02-09&to=2024-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+        
+             self.upcomingEvents = result
+             
+         
+            group.leave()
+        }
+        
+        group.enter()
+        self.networkfromsevices.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2022-02-09&to=2023-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+         
+             self.latestEvents = result
+             
+         
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.teamCollection.reloadData()
+            self.recentComing.reloadData()
+            self.comingCollection.reloadData()
+        }
     }
 }
