@@ -10,21 +10,21 @@ import Alamofire
 
 protocol Services {
     
-    func fetch(url:String?,compiletionHandler : @escaping ([Leagus]?)->Void)
+    func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
 }
 class NetworkService : Services{
 
-    func fetch(url:String?,compiletionHandler : @escaping ([Leagus]?)->Void){
+    func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void){
         
         let request = AF.request(url ?? "")
         
-        request.responseDecodable(of:LeguesData.self) { (response) in
-            guard let leagues = response.value?.result else {
+        request.responseDecodable(of:T.self) { (response) in
+            guard let resultOfAPI = response.value else {
 
-              compiletionHandler(nil)
+                compiletionHandler(nil)
               return }
 
-        compiletionHandler(leagues)
+        compiletionHandler(resultOfAPI)
         }
    }
 }

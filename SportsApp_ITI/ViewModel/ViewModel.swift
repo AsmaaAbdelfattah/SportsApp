@@ -13,7 +13,7 @@ class ViewModel {
     
     
     var bindResultToViewController : (() -> ()) = {}
-    var resultLeagues : [Leagus]! {
+    var resultLeagues : LeguesData! {
         didSet {
             bindResultToViewController()
         }

@@ -13,7 +13,7 @@ class LegeusViewController: UIViewController {
     var sport : Int?
     @IBOutlet weak var LegeusTableVeiw: UITableView!
     var networkService : NetworkService?
-    var responseArr : [Leagus]?
+    var responseArr : LeguesData?
     var url : String?
     var viewModel : ViewModel?
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return responseArr?.count ?? 0
+        return responseArr?.result.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,9 +70,9 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
-        cell.leagueImg.kf.setImage(with: URL(string: (responseArr?[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.leagueImg.kf.setImage(with: URL(string: (responseArr?.result[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         //cell.leagueImg.image = UIImage(named: responseArr?[indexPath.row].league_logo ?? "youtube.png")
-        cell.leagueName.text = responseArr?[indexPath.row].league_name
+        cell.leagueName.text = responseArr?.result[indexPath.row].league_name
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
         cell.leagueImg?.clipsToBounds = true
        
@@ -96,10 +96,10 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
-        legeusDetailsObj.LGKey = responseArr![indexPath.row].league_key
+        legeusDetailsObj.LGKey = responseArr?.result[indexPath.row].league_key
         legeusDetailsObj.modalPresentationStyle = .fullScreen
         legeusDetailsObj.spLabel = sport
-        legeusDetailsObj.league = responseArr?[indexPath.row]
+        legeusDetailsObj.league = responseArr?.result[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
 }
