@@ -10,11 +10,11 @@ import Alamofire
 
 protocol ServicesForTeams {
     
-    func fetch(url:String?,compiletionHandler : @escaping ([Teams]?)->Void)
+    func fetchTeam(url:String?,compiletionHandler : @escaping ([Teams]?)->Void)
 }
 class NetworkServiceForTeams : ServicesForTeams{
 
-    func fetch(url:String?,compiletionHandler : @escaping ([Teams]?)->Void){
+    func fetchTeam(url:String?,compiletionHandler : @escaping ([Teams]?)->Void){
         
         let request = AF.request(url ?? "")
         

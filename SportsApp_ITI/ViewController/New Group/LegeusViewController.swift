@@ -10,7 +10,7 @@ import Kingfisher
 
 class LegeusViewController: UIViewController {
     
-    
+    var sport : Int?
     @IBOutlet weak var LegeusTableVeiw: UITableView!
     var networkService : NetworkService?
     var responseArr : [Leagus]?
@@ -96,9 +96,9 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
-        
+        legeusDetailsObj.LGKey = responseArr![indexPath.row].league_key
         legeusDetailsObj.modalPresentationStyle = .fullScreen
-        
+        legeusDetailsObj.spLabel = sport
         legeusDetailsObj.league = responseArr?[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }

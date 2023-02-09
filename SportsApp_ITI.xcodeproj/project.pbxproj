@@ -20,6 +20,8 @@
 		8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F74F2989BA6C009473FC /* TableViewCell.swift */; };
 		8C08F7522989BA6C009473FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F7502989BA6C009473FC /* TableViewCell.xib */; };
 		8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F7532989C232009473FC /* FavTableViewController.swift */; };
+		8C5C92B729951EEB00F2F015 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C92B629951EEB00F2F015 /* PlayersViewController.swift */; };
+		8C5C92B929953B4E00F2F015 /* GestureFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C92B829953B4E00F2F015 /* GestureFeature.swift */; };
 		8C7BC473298E69C200F31C08 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7BC472298E69C200F31C08 /* NetworkService.swift */; };
 		8C8494B92992E5A300DCAE4A /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8494B82992E5A300DCAE4A /* TeamViewController.swift */; };
 		8C8494BB2992E9D800DCAE4A /* TeamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8494BA2992E9D800DCAE4A /* TeamData.swift */; };
@@ -57,6 +59,8 @@
 		8C08F74F2989BA6C009473FC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8C08F7502989BA6C009473FC /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		8C08F7532989C232009473FC /* FavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
+		8C5C92B629951EEB00F2F015 /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
+		8C5C92B829953B4E00F2F015 /* GestureFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureFeature.swift; sourceTree = "<group>"; };
 		8C7BC472298E69C200F31C08 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8C8494B82992E5A300DCAE4A /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		8C8494BA2992E9D800DCAE4A /* TeamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamData.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8494B82992E5A300DCAE4A /* TeamViewController.swift */,
+				8C5C92B629951EEB00F2F015 /* PlayersViewController.swift */,
 			);
 			path = TeamDetailsViewController;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				3DDA2711298DAE420060635D /* LeagusData.swift */,
 				8C8494BA2992E9D800DCAE4A /* TeamData.swift */,
 				3D7F21D32994FE3F006B5320 /* EventsData.swift */,
+				8C5C92B829953B4E00F2F015 /* GestureFeature.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -379,8 +385,10 @@
 				8C8494B92992E5A300DCAE4A /* TeamViewController.swift in Sources */,
 				3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */,
 				8CFDF2C92989864E002DA2DF /* ViewController.swift in Sources */,
+				8C5C92B729951EEB00F2F015 /* PlayersViewController.swift in Sources */,
 				3D7F21D22994F935006B5320 /* NetworkServiceForTeams.swift in Sources */,
 				3D7F21D62994FFDF006B5320 /* NetworkServicesForEvents.swift in Sources */,
+				8C5C92B929953B4E00F2F015 /* GestureFeature.swift in Sources */,
 				8CFDF2C52989864E002DA2DF /* AppDelegate.swift in Sources */,
 				8C8494BB2992E9D800DCAE4A /* TeamData.swift in Sources */,
 				8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */,

@@ -73,8 +73,8 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         
             let legeusViewControllerObj : LegeusViewController = self.storyboard?.instantiateViewController(withIdentifier: "legeus") as! LegeusViewController
             legeusViewControllerObj.url = leaguesUrl[indexPath.row]
-            //legeusViewControllerObj.responseArr = leagues
-            
+           // legeusViewControllerObj.responseArr = leagues
+        legeusViewControllerObj.sport = indexPath.row
             self.navigationController?.pushViewController(legeusViewControllerObj, animated: true)
         }
 

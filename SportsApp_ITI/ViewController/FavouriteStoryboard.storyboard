@@ -143,6 +143,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xMa-wY-DhV"/>
                     <connections>
+                        <outlet property="TPLabel" destination="Vjk-am-Tkz" id="ORF-e2-pGL"/>
                         <outlet property="comingCollection" destination="2Si-Av-Jnq" id="QwM-X4-zX8"/>
                         <outlet property="favBtn" destination="mWl-PI-Ihb" id="Qb4-M1-VOX"/>
                         <outlet property="recentComing" destination="NKZ-3c-l3f" id="KaQ-rt-9zp"/>
@@ -162,7 +163,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="voe-4f-p6H">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="voe-4f-p6H">
                                 <rect key="frame" x="16" y="59" width="361" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -202,7 +203,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edH-Io-IUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3494" y="-46"/>
+            <point key="canvasLocation" x="3515" y="1"/>
+        </scene>
+        <!--Players View Controller-->
+        <scene sceneID="hSq-rC-LxS">
+            <objects>
+                <viewController storyboardIdentifier="player" id="YIk-e5-MlB" customClass="PlayersViewController" customModule="SportsApp_ITI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pjH-Ks-Nhf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-aG-ahA">
+                                <rect key="frame" x="175" y="368" width="77" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3yb-Ow-2K9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qo2-qW-zBq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4393" y="1"/>
         </scene>
     </scenes>
     <resources>

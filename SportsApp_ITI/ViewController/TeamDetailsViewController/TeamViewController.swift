@@ -6,22 +6,24 @@
 //
 
 import UIKit
-
-class TeamViewController: UIViewController {
+import Kingfisher
+class TeamViewController: UIViewController ,gestureInteraction {
     var url : String?
     var viewModel : ViewModel?
     var responseArr : [Teams]?
-  
+    var coach : String?
+    var team : Teams?
     @IBOutlet weak var teamPlayerCollection: UICollectionView!
     @IBOutlet weak var TeamCoach: UILabel!
     @IBOutlet weak var TeamImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        url = "https://apiv2.allsportsapi.com/football/?&met=Teams&teamId=4&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8"
-        TeamImage.image = UIImage(named: "football.png")
-  
-
-        TeamImage.layer.cornerRadius = TeamImage.frame.size.width / 2
+        gestureInteract()
+    TeamImage.kf.setImage(with: URL(string: team?.team_logo ?? "No image"), placeholder: UIImage(named: "real.png"))
+   
+        TeamCoach.text = "Coach Name : " + coach!
+ 
+        TeamImage.layer.cornerRadius = TeamImage.frame.size.height / 2
 
         TeamImage.clipsToBounds = true
 
@@ -30,50 +32,56 @@ class TeamViewController: UIViewController {
         TeamImage.layer.borderWidth = 2
         let nib = UINib(nibName: "CustomSportCollectionViewCell", bundle: nil)
         teamPlayerCollection.register(nib, forCellWithReuseIdentifier: "cell")
-        viewModel = ViewModel()
-         viewModel?.getLeague(url: url ?? "")
-         viewModel?.bindResultToViewController = {() in
-             self.renderView()
-         }
+        
          self.teamPlayerCollection.reloadData()
     }
-    func renderView(){
-//        DispatchQueue.main.async {
-//            self.responseArr = self.viewModel?.resultLeagues
-//            self.teamPlayerCollection.reloadData()
-//        }
+    func gestureInteract(){
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
+                gesture.direction = .down
+                view.isUserInteractionEnabled = true // For UIImageView
+                view.addGestureRecognizer(gesture)
     }
+    @objc
+    func dismissVC() {
+           dismiss(animated: true)
+       }
 }
 extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
-    
+
+
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return team?.players.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+       
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomSportCollectionViewCell
-        
-        cell.nameForSport.text = "Mohamed Salah"
-        cell.imgForSport.image = UIImage(named:  "real.png" )
+
+        cell.nameForSport.text = team?.players[indexPath.row].player_name
+
+        cell.imgForSport.kf.setImage(with: URL(string: team?.players[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "star.png"))
         cell.layer.borderWidth = CGFloat(5)
         cell.layer.cornerRadius = CGFloat(20)
-        
+
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       
-        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/5) - 15)
-       
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let TeamViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "player") as! PlayersViewController
+     
+        TeamViewControllerObj.modalPresentationStyle = .fullScreen
+        self.present(TeamViewControllerObj, animated: true, completion: nil)
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/5) - 15)
+
+    }
+
   }
 
     
