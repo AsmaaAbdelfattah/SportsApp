@@ -34,25 +34,33 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
     @IBOutlet weak var favBtn: UIButton!
     var iconFav = ["star.png", "filledStar.png"]
     var stateSelected = 0
+  
     override func viewDidLoad() {
-        gestureInteract()
+     
+     
         super.viewDidLoad()
+      
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        self.managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
+        
+        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
         if(spLabel == 3){
             TPLabel.text = "Players"
             TPLabel.adjustsFontSizeToFitWidth = true
         }
+   
+        
         workWithDispatchQueue()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        self.managedContext = appDelegate.persistentContainer.viewContext
-     
         var nib = UINib(nibName: "comCollectionViewCell", bundle: nil)
         self.comingCollection.register(nib, forCellWithReuseIdentifier: "coming")
          nib = UINib(nibName: "recCollectionViewCell", bundle: nil)
         self.recentComing.register(nib, forCellWithReuseIdentifier: "recent")
          nib = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
         self.teamCollection.register(nib, forCellWithReuseIdentifier: "team")
+        gestureInteract()
     }
   
     func gestureInteract(){
@@ -68,10 +76,10 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
 
     @IBAction func starBtnClicked(_ sender: Any) {
         
-        let entity = NSEntityDescription.entity(forEntityName: "League", in: managedContext)
+        
+        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
         
         let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
         leagues.setValue(league?.league_key, forKey: "league_key")
         leagues.setValue(league?.league_name, forKey: "league_name")
         leagues.setValue(league?.league_logo, forKey: "league_logo")
@@ -108,8 +116,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         else if(collectionView == recentComing){
             return latestEvents?.result.count ?? 0
         }
-        print("*******************")
-     print(teams?.result.count ?? 0)
+
         return teams?.result.count ?? 0
       
     }
@@ -173,15 +180,22 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == teamCollection){
-            let TeamViewControllerObj : TeamViewController = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamViewController
-         
-            TeamViewControllerObj.team = teams!.result[indexPath.row]
-            TeamViewControllerObj.coach = teams!.result[indexPath.row].coaches[0].coach_name 
-            TeamViewControllerObj.modalPresentationStyle = .fullScreen
-            self.present(TeamViewControllerObj, animated: true, completion: nil)
-        }
-        
-    }
+            if(spLabel == 3){
+                let PlayersViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "player") as! PlayersViewController
+                
+                PlayersViewControllerObj.modalPresentationStyle = .fullScreen
+                self.present(PlayersViewControllerObj, animated: true, completion: nil)
+            }
+            else{
+                let TeamViewControllerObj : TeamViewController = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamViewController
+                
+                TeamViewControllerObj.team = teams!.result[indexPath.row]
+                TeamViewControllerObj.coach = teams!.result[indexPath.row].coaches[0].coach_name
+                TeamViewControllerObj.modalPresentationStyle = .fullScreen
+                self.present(TeamViewControllerObj, animated: true, completion: nil)
+            }
+            
+        }}
     
     func workWithDispatchQueue () {
         

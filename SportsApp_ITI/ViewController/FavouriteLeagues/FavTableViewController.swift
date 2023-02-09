@@ -14,7 +14,7 @@ class FavTableViewController: UITableViewController {
     var managedContext : NSManagedObjectContext!
     
     var leagueFromCoreData : Array<NSManagedObject>!
-    //var leaguesFromCoreData : Array<Leagus> = []
+   // var leaguesFromCoreData : Array<Leagus> = []
     
     var network : Reachability?
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class FavTableViewController: UITableViewController {
         
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
               self.tableView.register(nib, forCellReuseIdentifier: "customCell")
-        
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,13 +106,23 @@ class FavTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+            if(leagueFromCoreData != nil){
+                //    managedContext.delete(leagueFromCoreData[indexPath.row])
+                managedContext.delete(leagueFromCoreData[indexPath.row])
+                // leagueFromCoreData.removeAtIndex(indexPath.row)
+                
+                do{
+                    try managedContext.save()
+                }catch let error{
+                    print(error.localizedDescription)
+                }
+                //       tableView.deleteRows(at: [indexPath], with: .fade)
+                fetchDataToCoreData()
+            }}
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         network = Reachability.forInternetConnection()
         if network!.isReachable(){
             network!.isReachableViaWiFi()
@@ -147,5 +157,6 @@ class FavTableViewController: UITableViewController {
         self.tableView.reloadData()
        
     }
+ 
 
 }
