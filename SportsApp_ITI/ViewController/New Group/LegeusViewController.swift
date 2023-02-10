@@ -107,7 +107,8 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         legeusDetailsObj.LGKey = searchedLeagues?[indexPath.row].league_key
         legeusDetailsObj.modalPresentationStyle = .fullScreen
         legeusDetailsObj.spLabel = sport
-        legeusDetailsObj.league = searchedLeagues?[indexPath.row]
+       // legeusDetailsObj.league = responseArr?[indexPath.row]
+       legeusDetailsObj.league = searchedLeagues?[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
 }

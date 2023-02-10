@@ -15,11 +15,11 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
     var spLabel : Int?
     @IBOutlet weak var TPLabel: UILabel!
     var managedContext : NSManagedObjectContext!
-    
+  
    // var networkfromteams : ServicesForTeams = NetworkServiceForTeams()
    // var networkfromsevices: ServicesForEvents = NetworkServiceForEvents()
     var network: Services = NetworkService()
-    
+  
     var teams : TeamData?
     var upcomingEvents : EventsData?
     var latestEvents : EventsData?
@@ -34,24 +34,20 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
     @IBOutlet weak var favBtn: UIButton!
     var iconFav = ["star.png", "filledStar.png"]
     var stateSelected = 0
-  
+    
     override func viewDidLoad() {
-     
-     
         super.viewDidLoad()
-      
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+       self.managedContext = appDelegate.persistentContainer.viewContext
         
-        self.managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
-        
-        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
         if(spLabel == 3){
             TPLabel.text = "Players"
             TPLabel.adjustsFontSizeToFitWidth = true
         }
    
-        
+     
+            isFavorite()
+            
         workWithDispatchQueue()
         
         var nib = UINib(nibName: "comCollectionViewCell", bundle: nil)
@@ -93,12 +89,13 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
         if(stateSelected == 0)
         {
             favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
-            
+            showToast(message: "\(league?.league_name ?? "" ) Added to Your Favourites")
             
           
             stateSelected += 1
         }
         else{
+            showToast(message: "\(league?.league_name ?? "") Removed From Your Favourites")
             favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
     
             stateSelected = 0
@@ -234,5 +231,60 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             self.recentComing.reloadData()
             self.comingCollection.reloadData()
         }
+    }
+    func showToast(message:String){
+        
+        let toast = UILabel(frame: CGRect(x: self.view.bounds.size.width/2-200 , y: self.view.bounds.size.height-100, width: self.view.bounds.size.width, height: 50))
+        toast.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toast.textColor = UIColor.white
+        toast.font = .boldSystemFont(ofSize: 14)
+        toast.textAlignment = .center
+        toast.alpha = 1.0
+        toast.layer.cornerRadius = 10
+        toast.clipsToBounds = true
+        toast.text = message
+        view.addSubview(toast)
+   
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseIn, animations: {
+            toast.alpha = 0.0
+            
+        }, completion: {
+            isCompleted in
+            toast.removeFromSuperview()
+        })
+    }
+    
+    
+    func isFavorite(){
+        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
+        
+        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
+  
+      
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:"League")
+      
+      
+        do{
+            let predicate = NSPredicate(format: "league_name ==%@",league?.league_name ?? "")
+            print(predicate)
+            fetchRequest.predicate = predicate
+           let record  = try managedContext.fetch(fetchRequest)
+            print(record)
+            if(record.isEmpty == false){
+                if(record[0].value(forKey: "isFilled") as! Bool ) {
+                    favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+                    
+                    stateSelected = 0
+                    leagues.setValue(false, forKey: "isFilled")
+                }
+                else{
+                    favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
+                    stateSelected += 1
+                    leagues.setValue(true, forKey: "isFilled")
+                }}
+        }catch let error{
+            print(error.localizedDescription)
+        }
+        
     }
 }
