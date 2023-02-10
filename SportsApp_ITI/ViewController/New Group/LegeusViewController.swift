@@ -11,13 +11,19 @@ import Kingfisher
 class LegeusViewController: UIViewController {
     
     var sport : Int?
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var LegeusTableVeiw: UITableView!
     var networkService : NetworkService?
     var responseArr : LeguesData?
+    var searchedLeagues : [Leagus]?
     var url : String?
     var viewModel : ViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         LegeusTableVeiw.layer.cornerRadius = 10
         
@@ -36,17 +42,19 @@ class LegeusViewController: UIViewController {
     func renderView(){
         DispatchQueue.main.async {
             self.responseArr = self.viewModel?.resultLeagues
+            self.searchedLeagues = self.responseArr?.result
             self.LegeusTableVeiw.reloadData()
         }
     }
 }
+
 extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return responseArr?.result.count ?? 0
+        return searchedLeagues?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,9 +78,9 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
-        cell.leagueImg.kf.setImage(with: URL(string: (responseArr?.result[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.leagueImg.kf.setImage(with: URL(string: (searchedLeagues?[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         //cell.leagueImg.image = UIImage(named: responseArr?[indexPath.row].league_logo ?? "youtube.png")
-        cell.leagueName.text = responseArr?.result[indexPath.row].league_name
+        cell.leagueName.text = searchedLeagues?[indexPath.row].league_name
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
         cell.leagueImg?.clipsToBounds = true
        
@@ -96,10 +104,34 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
-        legeusDetailsObj.LGKey = responseArr?.result[indexPath.row].league_key
+        legeusDetailsObj.LGKey = searchedLeagues?[indexPath.row].league_key
         legeusDetailsObj.modalPresentationStyle = .fullScreen
         legeusDetailsObj.spLabel = sport
-        legeusDetailsObj.league = responseArr?.result[indexPath.row]
+        legeusDetailsObj.league = searchedLeagues?[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
+}
+
+extension LegeusViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+      
+        searchedLeagues = []
+        
+        if searchText == "" {
+            searchedLeagues = responseArr?.result
+        }
+        
+        for letter in responseArr!.result
+        {
+            
+            if letter.league_name.uppercased().contains(searchText.uppercased())
+            {
+                searchedLeagues?.append(letter)
+            }
+        }
+        
+        self.LegeusTableVeiw.reloadData()
+    }
+    
 }
