@@ -61,15 +61,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sRy-Yn-jYf">
-                                <rect key="frame" x="8" y="114" width="359" height="664"/>
+                                <rect key="frame" x="8" y="172" width="359" height="606"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Kab-gJ-vEx" id="ELP-Sb-eMl"/>
                                     <outlet property="delegate" destination="Kab-gJ-vEx" id="pgu-fT-hQt"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legeus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Q6-LS9">
-                                <rect key="frame" x="147" y="55" width="81" height="37"/>
+                            <searchBar contentMode="redraw" barStyle="black" text="" placeholder="Search for league" translatesAutoresizingMaskIntoConstraints="NO" id="6YJ-uR-MJ9">
+                                <rect key="frame" x="8" y="108" width="359" height="56"/>
+                                <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="Kab-gJ-vEx" id="kwx-wf-HrM"/>
+                                </connections>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leageus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Q6-LS9">
+                                <rect key="frame" x="132" y="63" width="110" height="37"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,16 +90,22 @@
                         <viewLayoutGuide key="safeArea" id="HGf-hO-gTO"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="bottom" secondItem="HGf-hO-gTO" secondAttribute="bottom" id="96T-oS-lgT"/>
-                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="centerX" secondItem="sAV-AW-FUC" secondAttribute="centerX" id="Ap8-Ac-0hb"/>
-                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="8" id="JLB-AS-5bm"/>
-                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="top" secondItem="5dT-Q6-LS9" secondAttribute="bottom" constant="22" id="ZBm-1a-CQ2"/>
-                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="sRy-Yn-jYf" secondAttribute="trailing" constant="8" id="cl2-Yf-SKl"/>
-                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="top" secondItem="HGf-hO-gTO" secondAttribute="top" constant="8" id="hgH-dP-X9X"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="bottom" secondItem="HGf-hO-gTO" secondAttribute="bottom" id="DAR-01-Aam"/>
+                            <constraint firstItem="6YJ-uR-MJ9" firstAttribute="top" secondItem="5dT-Q6-LS9" secondAttribute="bottom" constant="8" id="Psf-DG-QQZ"/>
+                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="sRy-Yn-jYf" secondAttribute="trailing" constant="8" id="Zji-bx-JX9"/>
+                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="top" secondItem="HGf-hO-gTO" secondAttribute="top" constant="16" id="c5b-EA-pWl"/>
+                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="5dT-Q6-LS9" secondAttribute="trailing" constant="133" id="dKj-2q-bFB"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="centerX" secondItem="sAV-AW-FUC" secondAttribute="centerX" id="egr-Fv-K2z"/>
+                            <constraint firstItem="HGf-hO-gTO" firstAttribute="trailing" secondItem="6YJ-uR-MJ9" secondAttribute="trailing" constant="8" id="eqo-76-hkn"/>
+                            <constraint firstItem="6YJ-uR-MJ9" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="8" id="g35-S9-dEf"/>
+                            <constraint firstItem="5dT-Q6-LS9" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="132" id="sNJ-Mo-Hhv"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="top" secondItem="6YJ-uR-MJ9" secondAttribute="bottom" constant="8" id="tKx-5d-6PA"/>
+                            <constraint firstItem="sRy-Yn-jYf" firstAttribute="leading" secondItem="HGf-hO-gTO" secondAttribute="leading" constant="8" id="xht-RO-JHM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="LegeusTableVeiw" destination="sRy-Yn-jYf" id="uJB-xG-Y4T"/>
+                        <outlet property="searchBar" destination="6YJ-uR-MJ9" id="Nk9-CQ-7HW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1b-BF-S9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
