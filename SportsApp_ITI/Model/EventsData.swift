@@ -24,8 +24,10 @@ class Events : Decodable {
     var event_status : String
     var league_name : String
     var league_key : Int
-    var league_round : String
+    var league_round : String?
     var event_stadium : String?
     var home_team_logo : String?
     var away_team_logo : String?
+    var event_home_team_logo : String?
+    var event_away_team_logo : String?
 }

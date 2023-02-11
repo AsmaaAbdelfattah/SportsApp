@@ -15,8 +15,8 @@ class Teams : Decodable {
     var team_key : Int
     var team_name : String
     var team_logo : String?
-   var players : [Players]
-   var coaches : [Coaches]
+   var players : [Players]?
+   var coaches : [Coaches]?
   
     
 }

@@ -55,16 +55,16 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return team?.players.count ?? 0
+        return team?.players?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomSportCollectionViewCell
 
-        cell.nameForSport.text = team?.players[indexPath.row].player_name
+        cell.nameForSport.text = team?.players?[indexPath.row].player_name
 
-        cell.imgForSport.kf.setImage(with: URL(string: team?.players[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "star.png"))
+        cell.imgForSport.kf.setImage(with: URL(string: team?.players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "star.png"))
         cell.layer.borderWidth = CGFloat(5)
         cell.layer.cornerRadius = CGFloat(20)
 

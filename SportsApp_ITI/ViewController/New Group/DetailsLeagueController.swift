@@ -11,9 +11,9 @@ import Kingfisher
 
 class DetailsLeagueController: UIViewController,gestureInteraction {
     
-    var LGKey : Int?
+    var LGKey : Int = 0
     var leagueFromCoreData : [NSManagedObject]!
-    var spLabel : String?
+    var spLabel : String = ""
     @IBOutlet weak var TPLabel: UILabel!
     var managedContext : NSManagedObjectContext!
   
@@ -48,7 +48,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
    
         viewModel = ViewModel()
         coreData = viewModel?.getInstance()
-        if (coreData?.isFavourite(leagueKey: LGKey!))!
+        if (coreData?.isFavourite(leagueKey: LGKey))!
         {
             stateSelected = 1
             favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
@@ -86,7 +86,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
         if stateSelected == 1
         {
 
-            coreData?.deleteFromCoreData(leagueKey: LGKey!)
+            coreData?.deleteFromCoreData(leagueKey: LGKey)
             showToast(message: "\(league?.league_name ?? "") Removed From Your Favourites")
             favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
     
@@ -124,10 +124,17 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         if(collectionView == comingCollection){
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "coming", for: indexPath) as! comCollectionViewCell
+           
+            if spLabel == "football" {
+                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                
+                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            } else {
+                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                
+                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            }
             
-            cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-            
-            cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             
            return cell
         }
@@ -135,9 +142,17 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recent", for: indexPath) as! recCollectionViewCell
    
-            cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            if spLabel == "football" {
+                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                
+                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            } else {
+                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                
+                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                
+            }
             
-            cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             
             cell.score.text = latestEvents?.result[indexPath.row].event_final_result
             return cell
@@ -145,9 +160,9 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         if(spLabel == "tennis"){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "team", for: indexPath) as! TeamCollectionViewCell
        
-            cell.teamName.text = teams?.result[indexPath.row].players[indexPath.row].player_name
+            cell.teamName.text = teams?.result[indexPath.row].players?[indexPath.row].player_name
         
-            cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].players[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         
            return cell
         }
@@ -182,7 +197,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
                 let TeamViewControllerObj : TeamViewController = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamViewController
                 
                 TeamViewControllerObj.team = teams!.result[indexPath.row]
-                TeamViewControllerObj.coach = teams!.result[indexPath.row].coaches[0].coach_name
+                TeamViewControllerObj.coach = teams!.result[indexPath.row].coaches?[0].coach_name
                 TeamViewControllerObj.modalPresentationStyle = .fullScreen
                 self.present(TeamViewControllerObj, animated: true, completion: nil)
             }
@@ -216,7 +231,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         let group = DispatchGroup()
         
         group.enter()
-        viewModel?.getTeams(url: "https://apiv2.allsportsapi.com/\(spLabel ?? "")/?met=Teams&?met=Leagues&leagueId=\(LGKey ?? 3)&APIkey=\(APIkey)")
+        viewModel?.getTeams(url: "https://apiv2.allsportsapi.com/\(spLabel)/?met=Teams&?met=Leagues&leagueId=\(LGKey)&APIkey=\(APIkey)")
         viewModel?.bindResultToViewControllerForTeams = {() in
             self.teams = self.viewModel?.Teams
             group.leave()
@@ -224,7 +239,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         
         group.enter()
         
-        viewModel?.getUpcominEvents(url: "https://apiv2.allsportsapi.com/\(spLabel ?? "")/?met=Fixtures&leagueId=\(LGKey ?? 3)&from=2023-02-09&to=2024-02-09&APIkey=\(APIkey)")
+        viewModel?.getUpcominEvents(url: "https://apiv2.allsportsapi.com/\(spLabel)/?met=Fixtures&leagueId=\(LGKey)&from=2023-02-09&to=2024-02-09&APIkey=\(APIkey)")
         viewModel?.bindResultToViewControllerForUpcomingEvents = {() in
             self.upcomingEvents = self.viewModel?.upCominevents
             group.leave()
@@ -232,7 +247,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         
         group.enter()
         
-        viewModel?.getLatestEvents(url: "https://apiv2.allsportsapi.com/\(spLabel ?? "")/?met=Fixtures&leagueId=\(LGKey ?? 3)&from=2022-02-09&to=2023-02-09&APIkey=\(APIkey)")
+        viewModel?.getLatestEvents(url: "https://apiv2.allsportsapi.com/\(spLabel)/?met=Fixtures&leagueId=\(LGKey)&from=2022-02-09&to=2023-02-09&APIkey=\(APIkey)")
         viewModel?.bindResultToViewControllerForLatestEvents = {() in
             self.latestEvents = self.viewModel?.latestevents
             group.leave()
