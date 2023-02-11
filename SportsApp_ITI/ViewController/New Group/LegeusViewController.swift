@@ -105,10 +105,11 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
         legeusDetailsObj.LGKey = searchedLeagues?[indexPath.row].league_key
+        //legeusDetailsObj.LGName = searchedLeagues?[indexPath.row].league_name
         legeusDetailsObj.modalPresentationStyle = .fullScreen
         legeusDetailsObj.spLabel = sport
        // legeusDetailsObj.league = responseArr?[indexPath.row]
-       legeusDetailsObj.league = searchedLeagues?[indexPath.row]
+        legeusDetailsObj.league = searchedLeagues?[indexPath.row]
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
 }

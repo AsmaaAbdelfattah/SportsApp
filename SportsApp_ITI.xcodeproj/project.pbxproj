@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D7F21D42994FE3F006B5320 /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F21D32994FE3F006B5320 /* EventsData.swift */; };
+		3D95CAAD2997B88B007D32A1 /* CoreDataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95CAAC2997B88B007D32A1 /* CoreDataManger.swift */; };
 		3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80F7298D408700D344E4 /* SportsViewController.swift */; };
 		3D9B80FA298D418700D344E4 /* splash3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80F9298D418700D344E4 /* splash3.gif */; };
 		3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		3D7F21D32994FE3F006B5320 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
+		3D95CAAC2997B88B007D32A1 /* CoreDataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManger.swift; sourceTree = "<group>"; };
 		3D9B80F7298D408700D344E4 /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportsViewController.swift; path = "SportsApp_ITI/ViewController/New Group/SportsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3D9B80F9298D418700D344E4 /* splash3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splash3.gif; sourceTree = "<group>"; };
 		3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSportCollectionViewCell.swift; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D95CAAB2997B867007D32A1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3D95CAAC2997B88B007D32A1 /* CoreDataManger.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		3DA8AFC9298FC43100ACD3FF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +214,7 @@
 		8CFDF2DB29899533002DA2DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D95CAAB2997B867007D32A1 /* CoreData */,
 				3DA8AFC9298FC43100ACD3FF /* Services */,
 				3DDA2711298DAE420060635D /* LeagusData.swift */,
 				8C8494BA2992E9D800DCAE4A /* TeamData.swift */,
@@ -376,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D95CAAD2997B88B007D32A1 /* CoreDataManger.swift in Sources */,
 				8C8494B92992E5A300DCAE4A /* TeamViewController.swift in Sources */,
 				3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */,
 				8CFDF2C92989864E002DA2DF /* ViewController.swift in Sources */,

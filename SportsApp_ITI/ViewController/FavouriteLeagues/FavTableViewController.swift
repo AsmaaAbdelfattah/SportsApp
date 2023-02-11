@@ -14,23 +14,34 @@ class FavTableViewController: UITableViewController {
     var managedContext : NSManagedObjectContext!
     
     var leagueFromCoreData : Array<NSManagedObject>!
+    
+    var tempLague : Leagus!
+    
+    var viewModel : ViewModel?
+    var coreData : CoreDataManager?
    // var leaguesFromCoreData : Array<Leagus> = []
     
     var network : Reachability?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        self.managedContext = appDelegate.persistentContainer.viewContext
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//        self.managedContext = appDelegate.persistentContainer.viewContext
         
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
               self.tableView.register(nib, forCellReuseIdentifier: "customCell")
+        
+        viewModel = ViewModel()
+        coreData = viewModel?.getInstance()
       
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchDataToCoreData()
+        
+        self.leagueFromCoreData = coreData?.fetchFromCoreData()
+        
+        self.tableView.reloadData()
     }
 
  
@@ -50,6 +61,8 @@ class FavTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
 
+        
+        
         // Configure the cell...
         cell.YTIcon.image = UIImage(named: "youtube.png")
         cell.leagueImg.image = UIImage(named: "youtube.png")
@@ -108,17 +121,21 @@ class FavTableViewController: UITableViewController {
             // Delete the row from the data source
             
             if(leagueFromCoreData != nil){
-                //    managedContext.delete(leagueFromCoreData[indexPath.row])
-                managedContext.delete(leagueFromCoreData[indexPath.row])
-                // leagueFromCoreData.removeAtIndex(indexPath.row)
+                coreData?.deleteFromCoreData(leagueKey: leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int)
+                self.leagueFromCoreData = coreData?.fetchFromCoreData()
+                self.tableView.reloadData()
                 
-                do{
-                    try managedContext.save()
-                }catch let error{
-                    print(error.localizedDescription)
-                }
-                //       tableView.deleteRows(at: [indexPath], with: .fade)
-                fetchDataToCoreData()
+                //    managedContext.delete(leagueFromCoreData[indexPath.row])
+//                managedContext.delete(leagueFromCoreData[indexPath.row])
+//                // leagueFromCoreData.removeAtIndex(indexPath.row)
+//
+//                do{
+//                    try managedContext.save()
+//                }catch let error{
+//                    print(error.localizedDescription)
+//                }
+//                //       tableView.deleteRows(at: [indexPath], with: .fade)
+//                fetchDataToCoreData()
             }}
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -128,6 +145,16 @@ class FavTableViewController: UITableViewController {
             network!.isReachableViaWiFi()
             print("connected")
             let view = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
+            
+           
+            //tempLague?.league_name = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as! String
+            //tempLague.league_logo = leagueFromCoreData[indexPath.row].value(forKey: "league_logo") as? String
+            //tempLague?.league_key = leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int
+            
+       // view.league?.league_name = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as! String
+            //view.league = tempLague
+           // view.leagueFromCoreData = self.leagueFromCoreData[indexPath.row]
+            view.LGKey = (leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int)
             view.modalPresentationStyle = .fullScreen
             self.present(view , animated: true, completion: nil)
           
