@@ -9,7 +9,6 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    @IBOutlet weak var YTIcon: UIImageView!
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var leagueImg: UIImageView!
   
