@@ -75,7 +75,7 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
             
         legeusViewControllerObj.url = leaguesUrl[indexPath.row]
            
-        legeusViewControllerObj.sport = sportsName?[indexPath.row]
+        legeusViewControllerObj.sport = sportsName![indexPath.row]
         
         self.navigationController?.pushViewController(legeusViewControllerObj, animated: true)
         }

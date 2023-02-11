@@ -10,7 +10,7 @@ import Kingfisher
 
 class LegeusViewController: UIViewController {
     
-    var sport : String?
+    var sport : String = ""
     var networkService : NetworkService?
     var responseArr : LeguesData?
     var searchedLeagues : [Leagus]?
@@ -87,7 +87,7 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
         
-        legeusDetailsObj.LGKey = searchedLeagues?[indexPath.row].league_key
+        legeusDetailsObj.LGKey = (searchedLeagues?[indexPath.row].league_key)!
         legeusDetailsObj.spLabel = sport
         legeusDetailsObj.league = searchedLeagues?[indexPath.row]
         
