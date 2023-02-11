@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D7F21D42994FE3F006B5320 /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F21D32994FE3F006B5320 /* EventsData.swift */; };
 		3D95CAAD2997B88B007D32A1 /* CoreDataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95CAAC2997B88B007D32A1 /* CoreDataManger.swift */; };
+		3D95CAAF29980186007D32A1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95CAAE29980186007D32A1 /* Constants.swift */; };
 		3D9B80F8298D408700D344E4 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80F7298D408700D344E4 /* SportsViewController.swift */; };
 		3D9B80FA298D418700D344E4 /* splash3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D9B80F9298D418700D344E4 /* splash3.gif */; };
 		3D9B80FD298D42AC00D344E4 /* CustomSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		3D7F21D32994FE3F006B5320 /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
 		3D95CAAC2997B88B007D32A1 /* CoreDataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManger.swift; sourceTree = "<group>"; };
+		3D95CAAE29980186007D32A1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D9B80F7298D408700D344E4 /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportsViewController.swift; path = "SportsApp_ITI/ViewController/New Group/SportsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3D9B80F9298D418700D344E4 /* splash3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splash3.gif; sourceTree = "<group>"; };
 		3D9B80FB298D42AC00D344E4 /* CustomSportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSportCollectionViewCell.swift; path = "SportsApp_ITI/ViewController/New Group/CustomSportCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -207,6 +209,7 @@
 				8CFDF2D029898652002DA2DF /* Assets.xcassets */,
 				8CFDF2D529898652002DA2DF /* Info.plist */,
 				8CFDF2CD2989864E002DA2DF /* SportsApp_ITI.xcdatamodeld */,
+				3D95CAAE29980186007D32A1 /* Constants.swift */,
 			);
 			path = SportsApp_ITI;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				8CFDF2C92989864E002DA2DF /* ViewController.swift in Sources */,
 				8C5C92B729951EEB00F2F015 /* PlayersViewController.swift in Sources */,
 				8C5C92B929953B4E00F2F015 /* GestureFeature.swift in Sources */,
+				3D95CAAF29980186007D32A1 /* Constants.swift in Sources */,
 				8CFDF2C52989864E002DA2DF /* AppDelegate.swift in Sources */,
 				8C8494BB2992E9D800DCAE4A /* TeamData.swift in Sources */,
 				8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */,

@@ -10,21 +10,21 @@ import Kingfisher
 
 class LegeusViewController: UIViewController {
     
-    var sport : Int?
-    
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var LegeusTableVeiw: UITableView!
+    var sport : String?
     var networkService : NetworkService?
     var responseArr : LeguesData?
     var searchedLeagues : [Leagus]?
     var url : String?
     var viewModel : ViewModel?
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var LegeusTableVeiw: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchBar.delegate = self
-        
+        searchBar.layer.cornerRadius = 10
         LegeusTableVeiw.layer.cornerRadius = 10
         
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
@@ -60,37 +60,19 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("/////\(indexPath.row)/////////")
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-//        networkService = NetworkService()
-//        networkService?.fetch(url:url ,compiletionHandler:
-//        { request in
-//            DispatchQueue.main.async { [self] in
-//
-//                self.responseArr = request ?? nil
-//                self.LegeusTableVeiw.reloadData()
-//
-//            }
-//
-//        })
- 
-        
+
         cell.layer.borderWidth = CGFloat(2)
         cell.layer.cornerRadius = CGFloat(10)
         
-        // Configure the cell...
-        cell.YTIcon.image = UIImage(named: "youtube.png")
         cell.leagueImg.kf.setImage(with: URL(string: (searchedLeagues?[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-        //cell.leagueImg.image = UIImage(named: responseArr?[indexPath.row].league_logo ?? "youtube.png")
-        cell.leagueName.text = searchedLeagues?[indexPath.row].league_name
-        cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
-        cell.leagueImg?.clipsToBounds = true
-       
-        cell.leagueImg?.layer.borderColor = UIColor.white.cgColor
-        cell.leagueImg?.layer.masksToBounds = false
-        cell.YTIcon?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
-        cell.YTIcon?.clipsToBounds = true
         
-        cell.YTIcon?.layer.borderColor = UIColor.white.cgColor
-        cell.YTIcon?.layer.masksToBounds = false
+    
+        cell.leagueImg?.layer.cornerRadius = 30
+        cell.leagueImg?.clipsToBounds = true
+       // cell.leagueImg?.layer.borderColor = UIColor.white.cgColor
+      //  cell.leagueImg?.layer.masksToBounds = false
+        
+        cell.leagueName.text = searchedLeagues?[indexPath.row].league_name
       
         return cell
     }
@@ -104,12 +86,12 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
+        
         legeusDetailsObj.LGKey = searchedLeagues?[indexPath.row].league_key
-        //legeusDetailsObj.LGName = searchedLeagues?[indexPath.row].league_name
-        legeusDetailsObj.modalPresentationStyle = .fullScreen
         legeusDetailsObj.spLabel = sport
-       // legeusDetailsObj.league = responseArr?[indexPath.row]
         legeusDetailsObj.league = searchedLeagues?[indexPath.row]
+        
+        legeusDetailsObj.modalPresentationStyle = .fullScreen
         self.present(legeusDetailsObj , animated: true, completion: nil)
     }
 }

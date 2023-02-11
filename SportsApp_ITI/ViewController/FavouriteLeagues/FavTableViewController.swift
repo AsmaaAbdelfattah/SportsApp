@@ -64,7 +64,7 @@ class FavTableViewController: UITableViewController {
         
         
         // Configure the cell...
-        cell.YTIcon.image = UIImage(named: "youtube.png")
+        
         cell.leagueImg.image = UIImage(named: "youtube.png")
         cell.leagueName.text = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as? String
         cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
@@ -72,17 +72,11 @@ class FavTableViewController: UITableViewController {
        
         cell.leagueImg?.layer.borderColor = UIColor.white.cgColor
         cell.leagueImg?.layer.masksToBounds = false
-        cell.YTIcon?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
-        cell.YTIcon?.clipsToBounds = true
-        
-        cell.YTIcon?.layer.borderColor = UIColor.white.cgColor
-        cell.YTIcon?.layer.masksToBounds = false
         
         //Open Youtube
     
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        cell.YTIcon.isUserInteractionEnabled = true
-        cell.YTIcon.addGestureRecognizer(tapGestureRecognizer)
+       
         return cell
         
         
