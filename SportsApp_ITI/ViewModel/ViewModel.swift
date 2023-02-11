@@ -8,10 +8,6 @@
 import Foundation
 class ViewModel {
     
-    
-    
-    
-    
     var bindResultToViewController : (() -> ()) = {}
     var resultLeagues : LeguesData! {
         didSet {
@@ -19,12 +15,20 @@ class ViewModel {
         }
     }
    
-    var networkObj : Services = NetworkService()
+   // var networkObj : Services = NetworkService()
     
     //get data from model
     func getLeague(url : String){
-        networkObj.fetch(url: url) { result in
+        NetworkService.fetch(url: url) { result in
             self.resultLeagues = result
         }
     }
+    
+    func getInstance () -> CoreDataManager {
+        
+        return CoreDataManager.getInstance()
+
+    }
+    
+    
 }

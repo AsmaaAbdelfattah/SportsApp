@@ -11,14 +11,14 @@ import Kingfisher
 
 class DetailsLeagueController: UIViewController,gestureInteraction {
     var LGKey : Int?
-    var leagueFromCoreData : Array<NSManagedObject>!
+    var leagueFromCoreData : [NSManagedObject]!
     var spLabel : Int?
     @IBOutlet weak var TPLabel: UILabel!
     var managedContext : NSManagedObjectContext!
   
    // var networkfromteams : ServicesForTeams = NetworkServiceForTeams()
    // var networkfromsevices: ServicesForEvents = NetworkServiceForEvents()
-    var network: Services = NetworkService()
+   // var network: Services = NetworkService()
   
     var teams : TeamData?
     var upcomingEvents : EventsData?
@@ -34,7 +34,8 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
     @IBOutlet weak var favBtn: UIButton!
     var iconFav = ["star.png", "filledStar.png"]
     var stateSelected = 0
-    
+    var viewModel : ViewModel?
+    var coreData : CoreDataManager?
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -45,8 +46,18 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
             TPLabel.adjustsFontSizeToFitWidth = true
         }
    
-     
-            isFavorite()
+        viewModel = ViewModel()
+        coreData = viewModel?.getInstance()
+        if (coreData?.isFavourite(leagueKey: LGKey!))!
+        {
+            stateSelected = 1
+            favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+            
+        } else {
+            stateSelected = 0
+            favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
+            
+        }
             
         workWithDispatchQueue()
         
@@ -73,32 +84,50 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
     @IBAction func starBtnClicked(_ sender: Any) {
         
         
-        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
+//        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
+//
+//        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
         
-        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
-        leagues.setValue(league?.league_key, forKey: "league_key")
-        leagues.setValue(league?.league_name, forKey: "league_name")
-        leagues.setValue(league?.league_logo, forKey: "league_logo")
-        leagues.setValue(true, forKey: "isFilled")
-        do{
-            try managedContext.save()
-        }catch let error {
-            print (error)
-        }
 
-        if(stateSelected == 0)
+        if stateSelected == 1
         {
-            favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
-            showToast(message: "\(league?.league_name ?? "" ) Added to Your Favourites")
-            
-          
-            stateSelected += 1
-        }
-        else{
+//            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:"League")
+//
+//            do{
+//                self.leagueFromCoreData = try self.managedContext.fetch(fetchRequest)
+//                for val in leagueFromCoreData {
+//                    if (val.value(forKey: "league_key") as! Int) == LGKey {
+//                        managedContext.delete(val)
+//                    }}
+//                try managedContext.save()
+//            }catch let error {
+//                print (error)
+//            }
+            coreData?.deleteFromCoreData(leagueKey: LGKey!)
             showToast(message: "\(league?.league_name ?? "") Removed From Your Favourites")
             favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
     
             stateSelected = 0
+            
+            
+        }
+        else{
+            
+//            leagues.setValue(league?.league_key, forKey: "league_key")
+//            leagues.setValue(league?.league_name, forKey: "league_name")
+//            leagues.setValue(league?.league_logo, forKey: "league_logo")
+//
+//            do{
+//                try managedContext.save()
+//            }catch let error {
+//                print (error)
+//            }
+            coreData?.saveToCoreData(league: league!)
+            favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+            showToast(message: "\(league?.league_name ?? "" ) Added to Your Favourites")
+            
+            stateSelected = 1
+           
         }
     }
    
@@ -200,7 +229,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         
         group.enter()
         
-        self.network.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Teams&?met=Leagues&leagueId=3&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+        NetworkService.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Teams&?met=Leagues&leagueId=3&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
          
             self.teams = result
       
@@ -209,7 +238,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         
         group.enter()
          
-        self.network.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2023-02-09&to=2024-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+        NetworkService.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2023-02-09&to=2024-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
         
              self.upcomingEvents = result
              
@@ -218,7 +247,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         }
         
         group.enter()
-        self.network.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2022-02-09&to=2023-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
+       NetworkService.fetch(url: "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=205&from=2022-02-09&to=2023-02-09&APIkey=59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8") { result in
          
              self.latestEvents = result
              
@@ -256,32 +285,31 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
     
     
     func isFavorite(){
-        let entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
+        /*let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "League")
+         
+         do{
+             self.leagueFromCoreData = try self.managedContext.fetch(fetchRequest)
+            
+         } catch let error {
+             print (error)
+         }*/
         
-        let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
-  
-      
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:"League")
-      
-      
+
+
         do{
-            let predicate = NSPredicate(format: "league_name ==%@",league?.league_name ?? "")
-            print(predicate)
-            fetchRequest.predicate = predicate
-           let record  = try managedContext.fetch(fetchRequest)
-            print(record)
-            if(record.isEmpty == false){
-                if(record[0].value(forKey: "isFilled") as! Bool ) {
+            self.leagueFromCoreData = try self.managedContext.fetch(fetchRequest)
+            
+            for val in leagueFromCoreData {
+                if (val.value(forKey: "league_key") as! Int) == LGKey {
+                    stateSelected = 1
                     favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
-                    
+                } else {
                     stateSelected = 0
-                    leagues.setValue(false, forKey: "isFilled")
-                }
-                else{
                     favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
-                    stateSelected += 1
-                    leagues.setValue(true, forKey: "isFilled")
-                }}
+                }
+            }
         }catch let error{
             print(error.localizedDescription)
         }

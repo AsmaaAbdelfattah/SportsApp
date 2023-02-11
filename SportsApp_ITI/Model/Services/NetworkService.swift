@@ -10,11 +10,12 @@ import Alamofire
 
 protocol Services {
     
-    func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
+    static func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void)
 }
+
 class NetworkService : Services{
 
-    func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void){
+    static func fetch <T : Decodable>(url:String?,compiletionHandler : @escaping (T?)->Void){
         
         let request = AF.request(url ?? "")
         
