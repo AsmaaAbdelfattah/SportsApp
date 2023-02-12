@@ -96,7 +96,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
         }
         else{
             
-            coreData?.saveToCoreData(league: league!)
+            coreData?.saveToCoreData(league: league! , sportName: spLabel)
             favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
             showToast(message: "\(league?.league_name ?? "" ) Added to Your Favourites")
             
@@ -201,7 +201,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
                 let TeamViewControllerObj : TeamViewController = self.storyboard?.instantiateViewController(withIdentifier: "team") as! TeamViewController
                 
                 TeamViewControllerObj.team = teams!.result[indexPath.row]
-                TeamViewControllerObj.coach = teams!.result[indexPath.row].coaches?[0].coach_name
+                TeamViewControllerObj.coach = (teams!.result[indexPath.row].coaches?[0].coach_name) ?? "no avaliable data"
                 TeamViewControllerObj.modalPresentationStyle = .fullScreen
                 self.present(TeamViewControllerObj, animated: true, completion: nil)
             }
