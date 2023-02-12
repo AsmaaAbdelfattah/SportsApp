@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol CoreDataOpe {
-    func saveToCoreData(league : Leagus)
+    func saveToCoreData(league : Leagus , sportName : String)
     func deleteFromCoreData(leagueKey : Int)
     func fetchFromCoreData() -> [NSManagedObject]
     func isFavourite(leagueKey : Int) -> Bool
@@ -38,13 +38,14 @@ class CoreDataManager : CoreDataOpe{
         entity = NSEntityDescription.entity(forEntityName: "League", in: self.managedContext)
     }
     
-    func saveToCoreData(league: Leagus) {
+    func saveToCoreData(league: Leagus , sportName : String) {
         
         let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         leagues.setValue(league.league_key, forKey: "league_key")
         leagues.setValue(league.league_name, forKey: "league_name")
         leagues.setValue(league.league_logo, forKey: "league_logo")
+        leagues.setValue(sportName, forKey: "sport_name")
         
         do{
             try managedContext.save()

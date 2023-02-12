@@ -157,6 +157,7 @@ class FavTableViewController: UITableViewController ,Notification{
             //view.league = tempLague
            // view.leagueFromCoreData = self.leagueFromCoreData[indexPath.row]
             view.LGKey = (leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int)
+            view.spLabel = (leagueFromCoreData[indexPath.row].value(forKey: "sport_name") as! String)
             view.modalPresentationStyle = .fullScreen
             self.present(view , animated: true, completion: nil)
           
