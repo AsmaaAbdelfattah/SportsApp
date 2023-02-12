@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import Reachability
 
-class FavTableViewController: UITableViewController {
+class FavTableViewController: UITableViewController ,Notification{
     
     var managedContext : NSManagedObjectContext!
     
@@ -34,13 +34,21 @@ class FavTableViewController: UITableViewController {
         
         viewModel = ViewModel()
         coreData = viewModel?.getInstance()
-      
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         self.leagueFromCoreData = coreData?.fetchFromCoreData()
-        
+        if(leagueFromCoreData != nil){
+            print("llll")
+            showNotification()
+            for item in leagueFromCoreData{
+              
+                schduleNotification(message: "Check out \(item.value(forKey: "league_name") ?? "") Your favourite league", Title: "Sports App")
+            }
+            
+        }
         self.tableView.reloadData()
     }
 
@@ -178,6 +186,30 @@ class FavTableViewController: UITableViewController {
         self.tableView.reloadData()
        
     }
- 
+    func schduleNotification(message: String, Title: String) {
+        let content = UNMutableNotificationContent()
+        content.title = Title
+        content.body = message
+        content.sound = .default
+        content.badge = (SportsViewController.notifCounter) as NSNumber
+        SportsViewController.notifCounter += 1
+        let trigger =  UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(60), repeats:
+    true)
+        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    func showNotification() {
+     //   SportsViewController.showNotification(SportsViewController.self)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert , .sound , .badge]){
+            (granted , error) in
+            if granted {
+                print("granted")
+            }
+            else{
+                print("Deined")
+            }
+        }
+    }
 
 }

@@ -9,3 +9,4 @@ import Foundation
 
 var APIkey = "59dbd205f73cf075a8012c155eec9c37aa90478a4538caf0066c651dc62bb9b8"
 var mainUrl = "https://apiv2.allsportsapi.com/"
+

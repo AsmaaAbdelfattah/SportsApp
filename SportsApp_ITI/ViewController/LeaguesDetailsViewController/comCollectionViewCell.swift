@@ -9,6 +9,8 @@ import UIKit
 
 class comCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var timeEvent: UILabel!
+    @IBOutlet weak var DateEvent: UILabel!
     @IBOutlet weak var team1: UIImageView!
     @IBOutlet weak var team2: UIImageView!
     override func awakeFromNib() {

@@ -9,7 +9,8 @@ import UIKit
 import CoreData
 import Kingfisher
 
-class DetailsLeagueController: UIViewController,gestureInteraction {
+class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessage  {
+   
     
     var LGKey : Int = 0
     var leagueFromCoreData : [NSManagedObject]!
@@ -60,7 +61,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction {
         }
             
         workWithDispatchQueue()
-        
+   
         var nib = UINib(nibName: "comCollectionViewCell", bundle: nil)
         self.comingCollection.register(nib, forCellWithReuseIdentifier: "coming")
          nib = UINib(nibName: "recCollectionViewCell", bundle: nil)
@@ -134,7 +135,8 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
                 
                 cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             }
-            
+            cell.timeEvent.text =  upcomingEvents?.result[indexPath.row].event_time
+            cell.DateEvent.text =  upcomingEvents?.result[indexPath.row].event_date
             
            return cell
         }
@@ -155,6 +157,8 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             
             
             cell.score.text = latestEvents?.result[indexPath.row].event_final_result
+            
+       
             return cell
         }
         if(spLabel == "tennis"){
@@ -259,5 +263,6 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             self.comingCollection.reloadData()
         }
     }
+    
     
 }

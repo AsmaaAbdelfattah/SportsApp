@@ -9,14 +9,39 @@ import UIKit
 import CoreData
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Got notification")
+      guard  let window : UIWindow = UIApplication.shared.keyWindow
+        else{
+          return
+      }
+        let mainStoryboard:UIStoryboard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
 
+        let view = mainStoryboard.instantiateViewController(withIdentifier: "fav") as! FavTableViewController
+   let navController =   UINavigationController(rootViewController: view)
+    navController.modalPresentationStyle = .fullScreen
+        window.rootViewController = navController
+        window.makeKeyAndVisible()
+        
+    //    self.inputViewController?.navigationController?.pushViewController(view, animated: true)
+   
+   completionHandler()
+    }
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner , .sound])
+    }
+ func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UNUserNotificationCenter.current().delegate = self
+     
         return true
     }
+
+
+
+
 
     // MARK: UISceneSession Lifecycle
 

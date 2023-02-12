@@ -10,6 +10,8 @@ import UIKit
 
 class SportsViewController: UIViewController {
 
+    static var  notifCounter  = 0
+
     var sportsImg: [String]?
     var sportsName: [String]?
     var leagues : [Leagus]?
@@ -33,7 +35,7 @@ class SportsViewController: UIViewController {
 
         let nib = UINib(nibName: "CustomSportCollectionViewCell", bundle: nil)
         Sportscollection.register(nib, forCellWithReuseIdentifier: "cell")
-
+        
     }
 
 }
@@ -80,5 +82,5 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         self.navigationController?.pushViewController(legeusViewControllerObj, animated: true)
         }
 
-    
+  
 }

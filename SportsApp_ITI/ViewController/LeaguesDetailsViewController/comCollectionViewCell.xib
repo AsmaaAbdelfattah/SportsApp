@@ -24,13 +24,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="170" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow0-oU-ifd">
+                        <rect key="frame" x="154" y="58.333333333333343" width="37" height="18"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-7H-OpA">
+                        <rect key="frame" x="146" y="32" width="53" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ow0-oU-ifd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="154" id="8Yd-oa-dgj"/>
+                <constraint firstItem="dcc-7H-OpA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="32" id="9Jy-fN-j1S"/>
+                <constraint firstAttribute="trailing" secondItem="dcc-7H-OpA" secondAttribute="trailing" constant="146" id="BDH-wp-wUp"/>
+                <constraint firstAttribute="trailing" secondItem="ow0-oU-ifd" secondAttribute="trailing" constant="154" id="DPx-M0-puL"/>
+                <constraint firstItem="dcc-7H-OpA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="146" id="QwX-v0-eot"/>
+                <constraint firstItem="ow0-oU-ifd" firstAttribute="top" secondItem="dcc-7H-OpA" secondAttribute="bottom" constant="6" id="c7y-Lh-F4B"/>
+                <constraint firstItem="ow0-oU-ifd" firstAttribute="top" secondItem="dcc-7H-OpA" secondAttribute="bottom" constant="6" id="sa4-QW-YG5"/>
+            </constraints>
             <size key="customSize" width="1158" height="45"/>
             <connections>
+                <outlet property="DateEvent" destination="dcc-7H-OpA" id="UxT-xi-5TQ"/>
                 <outlet property="team1" destination="c60-4K-qzQ" id="9uM-D5-ku1"/>
                 <outlet property="team2" destination="Ir5-AI-meN" id="sbd-lG-Q9m"/>
+                <outlet property="timeEvent" destination="ow0-oU-ifd" id="3PJ-ne-Qu8"/>
             </connections>
             <point key="canvasLocation" x="-2.2900763358778624" y="-64.08450704225352"/>
         </collectionViewCell>
