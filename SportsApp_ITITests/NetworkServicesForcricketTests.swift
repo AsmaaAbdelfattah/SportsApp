@@ -39,7 +39,7 @@ final class NetworkServicesForcricketTests: XCTestCase {
             XCTAssertNotEqual(cricketLeagues.result.count, 0, "API Failed")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 6, handler: nil)
     }
     
     func testFetchForCricketLeaguesTeams () {
@@ -56,27 +56,27 @@ final class NetworkServicesForcricketTests: XCTestCase {
             XCTAssertNotEqual(cricketLeaguesTeams.result.count, 0, "API Failed")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 6, handler: nil)
         
     }
     
       
-//    func testFetchForCricketLeaguesEvents () {
-//        
-//        let expectation = expectation(description: "Waiting for API")
-//        
-//        NetworkService.fetch(url: "\(mainUrl)cricket/?met=Fixtures&leagueId=733&from=2023-02-09&to=2024-02-09&APIkey=\(APIkey)") { result in
-//            guard let cricketLeaguesEvents : EventsData = result else
-//            {
-//                XCTFail()
-//                expectation.fulfill()
-//                return
-//            }
-//            XCTAssertNotEqual(cricketLeaguesEvents.result.count, 0, "API Failed")
-//            expectation.fulfill()
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//        
-//    }
+    func testFetchForCricketLeaguesEvents () {
+        
+        let expectation = expectation(description: "Waiting for API")
+        
+        NetworkService.fetch(url: "\(mainUrl)cricket/?met=Fixtures&leagueId=&from=2023-02-09&to=2024-02-09&APIkey=\(APIkey)") { result in
+            guard let cricketLeaguesEvents : EventsData = result else
+            {
+                XCTFail()
+                expectation.fulfill()
+                return
+            }
+            XCTAssertNotEqual(cricketLeaguesEvents.result.count, 0, "API Failed")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        
+    }
 
 }

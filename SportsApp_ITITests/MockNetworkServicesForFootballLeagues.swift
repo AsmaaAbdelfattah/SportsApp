@@ -10,7 +10,7 @@ import Foundation
 
 class MockNetworkServicesForFootballLeagues {
     
-    static let   mockItemsJsonResponseFromFootballLeagues: String = "{\"result\":[{\"league_key\":4,\"league_name\":\"UEFA Europa League\"},{\"league_key\":1,\"league_name\":\"European Championship\"}]"
+    static let   mockItemsJsonResponseFromFootballLeagues: String = "{\"success\":1,\"result\":[{\"league_key\":4,\"league_name\":\"UEFA Europa League\"},{\"league_key\":1,\"league_name\":\"European Championship\"}]}"
 }
 
 extension MockNetworkServicesForFootballLeagues : Services {
