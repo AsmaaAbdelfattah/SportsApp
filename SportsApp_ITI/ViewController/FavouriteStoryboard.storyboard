@@ -31,6 +31,7 @@
                     <tabBarItem key="tabBarItem" title="Favourite" image="heart.circle.fill" catalog="system" id="jPV-WA-XOz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="favTableView" destination="Fbb-FV-dIV" id="Ag8-dA-eRC"/>
                         <outlet property="leagueTap" destination="9sj-UT-DVP" id="KfX-QS-1ht"/>
                     </connections>
                 </tableViewController>

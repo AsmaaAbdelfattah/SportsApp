@@ -40,22 +40,22 @@ final class NetworkServicesTennisTest : XCTestCase{
         })
         waitForExpectations(timeout: 5,handler: nil)
     }
- 
-//    func testEventstennisApi(){
-//        let expectation = expectation(description: "Waiting for API")
-//        
-//        NetworkService.fetch (url: "https://apiv2.allsportsapi.com/tennis/?met=Fixtures&leagueId=2833&from=2023-02-09&to=2024-02-09&APIkey=\(APIkey)", compiletionHandler: { data in
-//            guard let response : EventsData = data else
-//            {
-//                XCTFail()
-//                expectation.fulfill()
-//                return
-//            }
-//            XCTAssertNotEqual(response.result.count, 0 , "tennis Events Api Failed")
-//            expectation.fulfill()
-//        })
-//        waitForExpectations(timeout: 5,handler: nil)
-//    }
+    func testEventsTennisApi(){
+        let expectation = expectation(description: "Waiting for API")
+        
+        NetworkService.fetch (url: "\(mainUrl)tennis/?met=Fixtures&leagueId=8575&APIkey=\(APIkey)&from=2023-02-11&to=2023-02-20", compiletionHandler: { data in
+            guard let response : EventsData = data else
+            {
+                XCTFail()
+                expectation.fulfill()
+                return
+            }
+            XCTAssertNotEqual(response.result.count, 0 , "Tennis Events Api Failed")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 5,handler: nil)
+    }
+
 //    func testTeamsTennisApi(){
 //        let expectation = expectation(description: "Waiting for API")
 //        

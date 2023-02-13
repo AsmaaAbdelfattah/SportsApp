@@ -58,18 +58,19 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
         self.tableView.reloadData()
     }
 
+    @IBOutlet var favTableView: UITableView!
     func gestureInteract(){
-    
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
-         leagueTap.addGestureRecognizer(tap)
-      
-            view.addSubview(leagueTap)
-            self.view = view
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
+                gesture.direction = .right
+                view.isUserInteractionEnabled = true // For UIImageView
+                view.addGestureRecognizer(gesture)
     }
     @objc
-        func dismissVC() {
-           dismiss(animated: true)
-       }
+    func dismissVC() {
+         navigationController?.popViewController(animated: true)
+          //dismiss(animated: true)
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

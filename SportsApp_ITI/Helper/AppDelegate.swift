@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         window.rootViewController = navController
         window.makeKeyAndVisible()
         
-    //    self.inputViewController?.navigationController?.pushViewController(view, animated: true)
+      self.inputViewController?.navigationController?.pushViewController(view, animated: true)
    
    completionHandler()
     }

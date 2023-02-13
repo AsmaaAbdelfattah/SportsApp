@@ -45,6 +45,7 @@
 		8CAB0902298C2EE30052C672 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAB0900298C2EE30052C672 /* TeamCollectionViewCell.swift */; };
 		8CAB0903298C2EE30052C672 /* TeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAB0901298C2EE30052C672 /* TeamCollectionViewCell.xib */; };
 		8CC1322D29993C83002DCC17 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1322C29993C83002DCC17 /* ToastMessage.swift */; };
+		8CDA40F0299AD4C700CAF92F /* MockManagerTennisEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA40EF299AD4C700CAF92F /* MockManagerTennisEvents.swift */; };
 		8CDE1418298C456B00D94B9D /* comCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE1416298C456B00D94B9D /* comCollectionViewCell.swift */; };
 		8CDE1419298C456B00D94B9D /* comCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE1417298C456B00D94B9D /* comCollectionViewCell.xib */; };
 		8CDE141C298C493300D94B9D /* recCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE141A298C493300D94B9D /* recCollectionViewCell.swift */; };
@@ -113,6 +114,7 @@
 		8CAB0900298C2EE30052C672 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		8CAB0901298C2EE30052C672 /* TeamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCollectionViewCell.xib; sourceTree = "<group>"; };
 		8CC1322C29993C83002DCC17 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		8CDA40EF299AD4C700CAF92F /* MockManagerTennisEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerTennisEvents.swift; sourceTree = "<group>"; };
 		8CDE1416298C456B00D94B9D /* comCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = comCollectionViewCell.swift; sourceTree = "<group>"; };
 		8CDE1417298C456B00D94B9D /* comCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = comCollectionViewCell.xib; sourceTree = "<group>"; };
 		8CDE141A298C493300D94B9D /* recCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				3D96879F299ABAE60099CB16 /* MockNetworkServicesForCricketLeagues.swift */,
 				3D9687A1299ABBBB0099CB16 /* MockNetworkServicesForCricketTeams.swift */,
 				3D9687A3299ABC680099CB16 /* MockNetworkServicesForCricketEvents.swift */,
+				8CDA40EF299AD4C700CAF92F /* MockManagerTennisEvents.swift */,
 			);
 			path = SportsApp_ITITests;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				3DAD8287299A95D300E59EA4 /* MockNetworkServicesForFootballTeams.swift in Sources */,
 				8C533A90299A5AE9006C6691 /* MockManagerBTLeague.swift in Sources */,
 				3D963ED12999A2C70043C2A5 /* MockNetworkServicesForFootballLeagues.swift in Sources */,
+				8CDA40F0299AD4C700CAF92F /* MockManagerTennisEvents.swift in Sources */,
 				3D9687A0299ABAE60099CB16 /* MockNetworkServicesForCricketLeagues.swift in Sources */,
 				8C533A8A299A4BE8006C6691 /* MockBasketballApiTests.swift in Sources */,
 				3D9687A6299ABD740099CB16 /* MockNetworkServicesForCricketTests.swift in Sources */,
