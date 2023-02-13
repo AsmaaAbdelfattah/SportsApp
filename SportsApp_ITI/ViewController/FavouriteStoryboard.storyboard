@@ -30,10 +30,13 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favourite" image="heart.circle.fill" catalog="system" id="jPV-WA-XOz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="leagueTap" destination="9sj-UT-DVP" id="KfX-QS-1ht"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYA-IH-w5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="21"/>
+            <point key="canvasLocation" x="985.49618320610682" y="20.422535211267608"/>
         </scene>
         <!--Details League Controller-->
         <scene sceneID="nig-by-cD3">
@@ -132,17 +135,27 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="3Zw-K7-aY6"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="jVY-5U-hHK"/>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78d-be-H8O">
+                                <rect key="frame" x="30" y="66" width="192" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xPl-E4-l0U"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mWl-PI-Ihb" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" id="6xq-AW-YE4"/>
+                            <constraint firstItem="mWl-PI-Ihb" firstAttribute="leading" secondItem="78d-be-H8O" secondAttribute="trailing" constant="78" id="HXx-PD-eem"/>
+                            <constraint firstItem="78d-be-H8O" firstAttribute="leading" secondItem="xPl-E4-l0U" secondAttribute="leading" constant="30" id="O3v-Pt-f99"/>
                             <constraint firstItem="xPl-E4-l0U" firstAttribute="trailing" secondItem="mWl-PI-Ihb" secondAttribute="trailing" constant="8" id="PMs-es-e28"/>
+                            <constraint firstItem="78d-be-H8O" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" constant="7" id="ZAd-nx-gQP"/>
                             <constraint firstItem="mWl-PI-Ihb" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" id="uMw-gz-LLV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xMa-wY-DhV"/>
                     <connections>
+                        <outlet property="LeagueTitle" destination="78d-be-H8O" id="O3I-bO-YuE"/>
                         <outlet property="TPLabel" destination="Vjk-am-Tkz" id="ORF-e2-pGL"/>
                         <outlet property="comingCollection" destination="2Si-Av-Jnq" id="QwM-X4-zX8"/>
                         <outlet property="favBtn" destination="mWl-PI-Ihb" id="Qb4-M1-VOX"/>

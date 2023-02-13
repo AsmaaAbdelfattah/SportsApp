@@ -10,6 +10,7 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate {
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Got notification")
       guard  let window : UIWindow = UIApplication.shared.keyWindow
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         let view = mainStoryboard.instantiateViewController(withIdentifier: "fav") as! FavTableViewController
    let navController =   UINavigationController(rootViewController: view)
     navController.modalPresentationStyle = .fullScreen
+   
         window.rootViewController = navController
         window.makeKeyAndVisible()
         

@@ -25,6 +25,12 @@
 		8C08F7512989BA6C009473FC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F74F2989BA6C009473FC /* TableViewCell.swift */; };
 		8C08F7522989BA6C009473FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F7502989BA6C009473FC /* TableViewCell.xib */; };
 		8C08F7542989C232009473FC /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F7532989C232009473FC /* FavTableViewController.swift */; };
+		8C533A88299A44DE006C6691 /* ResponseBasketballTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A87299A44DE006C6691 /* ResponseBasketballTest.swift */; };
+		8C533A8A299A4BE8006C6691 /* MockBasketballApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A89299A4BE8006C6691 /* MockBasketballApiTests.swift */; };
+		8C533A8C299A56CB006C6691 /* RsponseTennisTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A8B299A56CB006C6691 /* RsponseTennisTest.swift */; };
+		8C533A8E299A5790006C6691 /* MockTennisApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A8D299A5790006C6691 /* MockTennisApiTest.swift */; };
+		8C533A90299A5AE9006C6691 /* MockManagerBTLeague.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A8F299A5AE9006C6691 /* MockManagerBTLeague.swift */; };
+		8C533A92299A702F006C6691 /* MockManagerEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C533A91299A702F006C6691 /* MockManagerEvents.swift */; };
 		8C5C92B729951EEB00F2F015 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C92B629951EEB00F2F015 /* PlayersViewController.swift */; };
 		8C5C92B929953B4E00F2F015 /* GestureFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C92B829953B4E00F2F015 /* GestureFeature.swift */; };
 		8C7BC473298E69C200F31C08 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7BC472298E69C200F31C08 /* NetworkService.swift */; };
@@ -82,6 +88,12 @@
 		8C08F74F2989BA6C009473FC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8C08F7502989BA6C009473FC /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		8C08F7532989C232009473FC /* FavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
+		8C533A87299A44DE006C6691 /* ResponseBasketballTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBasketballTest.swift; sourceTree = "<group>"; };
+		8C533A89299A4BE8006C6691 /* MockBasketballApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketballApiTests.swift; sourceTree = "<group>"; };
+		8C533A8B299A56CB006C6691 /* RsponseTennisTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsponseTennisTest.swift; sourceTree = "<group>"; };
+		8C533A8D299A5790006C6691 /* MockTennisApiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTennisApiTest.swift; sourceTree = "<group>"; };
+		8C533A8F299A5AE9006C6691 /* MockManagerBTLeague.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerBTLeague.swift; sourceTree = "<group>"; };
+		8C533A91299A702F006C6691 /* MockManagerEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerEvents.swift; sourceTree = "<group>"; };
 		8C5C92B629951EEB00F2F015 /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
 		8C5C92B829953B4E00F2F015 /* GestureFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureFeature.swift; sourceTree = "<group>"; };
 		8C7BC472298E69C200F31C08 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -144,6 +156,12 @@
 				3D963ECA29999AD40043C2A5 /* NetworkServicesForFootballTests.swift */,
 				3D963EC329999AA30043C2A5 /* SportsApp_ITITests.swift */,
 				3D963ED02999A2C70043C2A5 /* MockNetworkServicesForFootballLeagues.swift */,
+				8C533A87299A44DE006C6691 /* ResponseBasketballTest.swift */,
+				8C533A89299A4BE8006C6691 /* MockBasketballApiTests.swift */,
+				8C533A8B299A56CB006C6691 /* RsponseTennisTest.swift */,
+				8C533A8D299A5790006C6691 /* MockTennisApiTest.swift */,
+				8C533A8F299A5AE9006C6691 /* MockManagerBTLeague.swift */,
+				8C533A91299A702F006C6691 /* MockManagerEvents.swift */,
 			);
 			path = SportsApp_ITITests;
 			sourceTree = "<group>";
@@ -469,8 +487,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D963EC429999AA30043C2A5 /* SportsApp_ITITests.swift in Sources */,
+				8C533A8E299A5790006C6691 /* MockTennisApiTest.swift in Sources */,
+				8C533A88299A44DE006C6691 /* ResponseBasketballTest.swift in Sources */,
+				8C533A90299A5AE9006C6691 /* MockManagerBTLeague.swift in Sources */,
 				3D963ED12999A2C70043C2A5 /* MockNetworkServicesForFootballLeagues.swift in Sources */,
+				8C533A8A299A4BE8006C6691 /* MockBasketballApiTests.swift in Sources */,
 				3D963ECB29999AD40043C2A5 /* NetworkServicesForFootballTests.swift in Sources */,
+				8C533A8C299A56CB006C6691 /* RsponseTennisTest.swift in Sources */,
+				8C533A92299A702F006C6691 /* MockManagerEvents.swift in Sources */,
 				3D963ECD2999A0F70043C2A5 /* NetworkServicesForcricketTests.swift in Sources */,
 				3D963ED32999A6EF0043C2A5 /* MockNetworkServicesForFootballLeaguesTests.swift in Sources */,
 			);

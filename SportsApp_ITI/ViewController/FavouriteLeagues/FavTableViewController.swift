@@ -9,7 +9,10 @@ import UIKit
 import CoreData
 import Reachability
 
-class FavTableViewController: UITableViewController ,Notification{
+class FavTableViewController: UITableViewController ,gestureInteraction,Notification{
+ 
+    
+    @IBOutlet weak var leagueTap: UILabel!
     
     var managedContext : NSManagedObjectContext!
     
@@ -25,7 +28,7 @@ class FavTableViewController: UITableViewController ,Notification{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+     //   let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //
 //        self.managedContext = appDelegate.persistentContainer.viewContext
         
@@ -34,7 +37,10 @@ class FavTableViewController: UITableViewController ,Notification{
         
         viewModel = ViewModel()
         coreData = viewModel?.getInstance()
-       
+        leagueTap.isUserInteractionEnabled = true
+   
+            gestureInteract()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +58,18 @@ class FavTableViewController: UITableViewController ,Notification{
         self.tableView.reloadData()
     }
 
- 
+    func gestureInteract(){
+    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
+         leagueTap.addGestureRecognizer(tap)
+      
+            view.addSubview(leagueTap)
+            self.view = view
+    }
+    @objc
+        func dismissVC() {
+           dismiss(animated: true)
+       }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -212,5 +229,6 @@ class FavTableViewController: UITableViewController ,Notification{
             }
         }
     }
+    
 
 }

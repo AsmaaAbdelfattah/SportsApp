@@ -12,6 +12,7 @@ import Kingfisher
 class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessage  {
    
     
+    @IBOutlet weak var LeagueTitle: UILabel!
     var LGKey : Int = 0
     var leagueFromCoreData : [NSManagedObject]!
     var spLabel : String = ""
@@ -41,7 +42,8 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        LeagueTitle.text = league?.league_name
+        LeagueTitle.adjustsFontSizeToFitWidth = true
         if(spLabel == "tennis"){
             TPLabel.text = "Players"
             TPLabel.adjustsFontSizeToFitWidth = true
