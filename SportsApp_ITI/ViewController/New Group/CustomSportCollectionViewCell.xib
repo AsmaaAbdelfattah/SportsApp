@@ -16,26 +16,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="190" height="160"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tT3-HP-JpL">
-                        <rect key="frame" x="8" y="128" width="174" height="24"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tT3-HP-JpL">
+                        <rect key="frame" x="8" y="108.66666666666667" width="174" height="35.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="22"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eQ2-3k-lN6">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eQ2-3k-lN6">
                         <rect key="frame" x="0.0" y="0.0" width="190" height="122"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" red="0.20170861479999999" green="0.19403147700000001" blue="0.21146452430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="eQ2-3k-lN6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7Sr-35-CHb"/>
                 <constraint firstItem="eQ2-3k-lN6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KtG-Ja-fGg"/>
                 <constraint firstItem="eQ2-3k-lN6" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7625" id="n3z-f6-EF0"/>
                 <constraint firstAttribute="trailing" secondItem="tT3-HP-JpL" secondAttribute="trailing" constant="8" id="pLA-1x-RDL"/>
                 <constraint firstItem="tT3-HP-JpL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ud4-wy-yNo"/>
-                <constraint firstAttribute="bottom" secondItem="tT3-HP-JpL" secondAttribute="bottom" constant="8" id="y6H-qj-uDw"/>
+                <constraint firstAttribute="bottom" secondItem="tT3-HP-JpL" secondAttribute="bottom" constant="16" id="y6H-qj-uDw"/>
                 <constraint firstAttribute="trailing" secondItem="eQ2-3k-lN6" secondAttribute="trailing" id="zmq-E2-LYO"/>
             </constraints>
             <connections>

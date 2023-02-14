@@ -42,6 +42,8 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height*0)
+        
         LeagueTitle.text = league?.league_name
         LeagueTitle.adjustsFontSizeToFitWidth = true
         teamCollection.layer.cornerRadius = 4
@@ -188,7 +190,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         if(spLabel == "tennis"){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "team", for: indexPath) as! TeamCollectionViewCell
        
-            cell.teamName.text = teams?.result[indexPath.row].players?[indexPath.row].player_name
+           
         
             cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         
@@ -196,7 +198,6 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
         }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "team", for: indexPath) as! TeamCollectionViewCell
        
-        cell.teamName.text = teams?.result[indexPath.row].team_name
         
         cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         

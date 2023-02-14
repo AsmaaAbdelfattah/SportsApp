@@ -46,6 +46,6 @@ class Events : Decodable {
     var event_live :String?
     var event_first_player_logo:String?
     var  event_second_player_logo : String?
-    var pointbypoint:[Int]
-    var scores : [Int]
+    var pointbypoint:[Int]?
+    var scores : [Int]?
 }

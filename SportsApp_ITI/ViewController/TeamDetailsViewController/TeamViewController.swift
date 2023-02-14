@@ -68,8 +68,8 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
 
         cell.nameForSport.text = team?.players?[indexPath.row].player_name
 
-        cell.imgForSport.kf.setImage(with: URL(string: team?.players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "star.png"))
-        cell.layer.borderWidth = CGFloat(5)
+        cell.imgForSport.kf.setImage(with: URL(string: team?.players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "none.png"))
+        //cell.layer.borderWidth = CGFloat(5)
     cell.layer.cornerRadius = CGFloat(20)
       
 
@@ -83,7 +83,7 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: (UIScreen.main.bounds.size.width/2) , height: (UIScreen.main.bounds.size.height/5) )
+        return CGSize(width: (UIScreen.main.bounds.size.width/2)-20 , height: (UIScreen.main.bounds.size.height/3)-20 )
 
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
