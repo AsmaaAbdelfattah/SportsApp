@@ -9,6 +9,7 @@ import UIKit
 
 class recCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var score: UILabel!
+    @IBOutlet weak var finished: UILabel!
     @IBOutlet weak var secondTeam: UIImageView!
     @IBOutlet weak var firstTeam: UIImageView!
     override func awakeFromNib() {

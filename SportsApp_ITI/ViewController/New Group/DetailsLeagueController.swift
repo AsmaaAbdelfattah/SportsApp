@@ -42,7 +42,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height*0)
+        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height*700)
         
         LeagueTitle.text = league?.league_name
         LeagueTitle.adjustsFontSizeToFitWidth = true
@@ -183,8 +183,9 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             
             
             cell.score.text = latestEvents?.result[indexPath.row].event_final_result
-            
-       
+           // cell.score!.text.adjustsFontSizeToFitWidth = true
+            cell.finished.text =  latestEvents?.result[indexPath.row].event_date
+           // cell.finished!.text.adjustsFontSizeToFitWidth = true
             return cell
         }
         if(spLabel == "tennis"){
@@ -218,7 +219,12 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             
             if(spLabel == "tennis"){
                 let PlayersViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "player") as! PlayersViewController
-                
+                PlayersViewControllerObj.name = teams!.result[indexPath.row].players?[indexPath.row].player_name
+                PlayersViewControllerObj.goalNum = teams!.result[indexPath.row].players?[indexPath.row].player_goals
+                PlayersViewControllerObj.number = teams!.result[indexPath.row].players?[indexPath.row].player_number
+                PlayersViewControllerObj.rCards = teams!.result[indexPath.row].players?[indexPath.row].player_red_cards
+                PlayersViewControllerObj.yCards = teams!.result[indexPath.row].players?[indexPath.row].player_yellow_cards
+                PlayersViewControllerObj.img = teams!.result[indexPath.row].players?[indexPath.row].player_image
                 PlayersViewControllerObj.modalPresentationStyle = .fullScreen
                 self.present(PlayersViewControllerObj, animated: true, completion: nil)
             }

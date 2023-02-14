@@ -16,28 +16,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="385" height="144"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" preservesSuperviewLayoutMargins="YES" id="ieU-wb-8n5">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" id="ieU-wb-8n5">
                         <rect key="frame" x="8" y="27" width="90" height="90"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ieU-wb-8n5" secondAttribute="height" multiplier="1:1" id="sRX-Ao-FgZ"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" preservesSuperviewLayoutMargins="YES" id="bkd-KW-qk5">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" id="bkd-KW-qk5">
                         <rect key="frame" x="285" y="27" width="92" height="92"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="bkd-KW-qk5" secondAttribute="height" multiplier="1:1" id="rHB-0s-Q6K"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Finished" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g10-dv-Niw">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finished" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g10-dv-Niw">
                         <rect key="frame" x="162" y="43" width="60" height="21"/>
                         <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="17"/>
                         <color key="textColor" systemColor="systemGreenColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5-5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY9-WH-9Pm">
-                        <rect key="frame" x="173" y="77.333333333333314" width="31.333333333333343" height="21.666666666666671"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5-5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY9-WH-9Pm">
+                        <rect key="frame" x="173" y="77.333333333333329" width="31.333333333333343" height="21.666666666666671"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <color key="textColor" systemColor="systemGreenColor"/>
                         <nil key="highlightedColor"/>
@@ -62,8 +62,9 @@
             </constraints>
             <size key="customSize" width="494" height="126"/>
             <connections>
+                <outlet property="finished" destination="g10-dv-Niw" id="nzU-Bw-W8O"/>
                 <outlet property="firstTeam" destination="ieU-wb-8n5" id="jZW-HI-J0C"/>
-                <outlet property="score" destination="EY9-WH-9Pm" id="BM5-sC-Lm6"/>
+                <outlet property="score" destination="g10-dv-Niw" id="Di4-cW-R7S"/>
                 <outlet property="secondTeam" destination="bkd-KW-qk5" id="grq-Py-Z34"/>
             </connections>
             <point key="canvasLocation" x="109.9236641221374" y="-101.40845070422536"/>

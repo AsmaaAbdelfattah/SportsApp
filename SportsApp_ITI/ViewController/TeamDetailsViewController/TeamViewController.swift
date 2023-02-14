@@ -77,7 +77,12 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let TeamViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "player") as! PlayersViewController
-     
+        TeamViewControllerObj.name = team?.players?[indexPath.row].player_name
+        TeamViewControllerObj.goalNum = team?.players?[indexPath.row].player_goals
+        TeamViewControllerObj.number = team?.players?[indexPath.row].player_number
+        TeamViewControllerObj.rCards = team?.players?[indexPath.row].player_red_cards
+        TeamViewControllerObj.yCards = team?.players?[indexPath.row].player_yellow_cards
+        TeamViewControllerObj.img = team?.players?[indexPath.row].player_image
         TeamViewControllerObj.modalPresentationStyle = .fullScreen
         self.present(TeamViewControllerObj, animated: true, completion: nil)
     }
