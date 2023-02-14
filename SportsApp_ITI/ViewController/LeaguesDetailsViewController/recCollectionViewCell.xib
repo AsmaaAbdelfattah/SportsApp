@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,12 +29,13 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY9-WH-9Pm">
                         <rect key="frame" x="147" y="27" width="47" height="25"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" systemColor="systemGreenColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.20170861479999999" green="0.19403147700000001" blue="0.21146452430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="EY9-WH-9Pm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="27" id="6Oy-ff-MWb"/>
                 <constraint firstItem="ieU-wb-8n5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="96g-VR-cbn"/>
@@ -55,4 +57,9 @@
             <point key="canvasLocation" x="67.938931297709928" y="-98.943661971830991"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

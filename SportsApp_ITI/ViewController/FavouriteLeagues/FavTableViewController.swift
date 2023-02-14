@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Reachability
+import Kingfisher
 
 class FavTableViewController: UITableViewController ,gestureInteraction,Notification{
  
@@ -31,7 +32,7 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
      //   let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //
 //        self.managedContext = appDelegate.persistentContainer.viewContext
-        
+        UITabBar.appearance().tintColor = UIColor.green
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
               self.tableView.register(nib, forCellReuseIdentifier: "customCell")
         
@@ -75,64 +76,48 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return leagueFromCoreData.count
+   
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return leagueFromCoreData.count
+        return 1
     }
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
 
-        
-        
-        // Configure the cell...
-        
-        cell.leagueImg.image = UIImage(named: "youtube.png")
-        cell.leagueName.text = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as? String
-        cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
-        cell.leagueImg?.clipsToBounds = true
-       
-        cell.leagueImg?.layer.borderColor = UIColor.white.cgColor
-        cell.leagueImg?.layer.masksToBounds = false
-        
-        //Open Youtube
+        cell.layer.cornerRadius = cell.frame.height/3
     
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        // Configure the cell...
+//        let scale = UIScreen.main.scale
+//        let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 100.0 * scale, height: 100.0 * scale))
+        cell.leagueImg.kf.setImage(with: URL(string: leagueFromCoreData[indexPath.section].value(forKey: "league_logo") as? String ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading ], progressBlock: nil, completionHandler: nil)
+
+        cell.leagueName.text = leagueFromCoreData[indexPath.section].value(forKey: "league_name") as? String
+       cell.leagueImg?.layer.cornerRadius = (cell.leagueImg?.frame.size.width ?? 0.0) / 2
+        cell.leagueImg?.clipsToBounds = true
+     
+        cell.leagueImg?.layer.borderColor = UIColor.black.cgColor
+        cell.leagueImg?.layer.masksToBounds = true
        
         return cell
-        
-        
-      
-  
     }
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(1);
+    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+           let headerView : UIView = UIView()
+           headerView.backgroundColor = UIColor.clear
+           return headerView
+           
+       }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 90.0;//Choose your custom row height
+//    }
 
-        // Your action
-        let youtubeId = "SxTYjptEzZs"
-            var youtubeUrl = NSURL(string:"youtube://\(youtubeId)")!
-        if UIApplication.shared.canOpenURL(youtubeUrl as URL){
-            UIApplication.shared.openURL(youtubeUrl as URL)
-            } else{
-                    youtubeUrl = NSURL(string:"https://www.youtube.com/watch?v=Dtcqf9RbEDM\(youtubeId)")!
-                UIApplication.shared.openURL(youtubeUrl as URL)
-            }
-    }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90.0;//Choose your custom row height
-    }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     
     // Override to support editing the table view.
@@ -141,7 +126,7 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
             // Delete the row from the data source
             
             if(leagueFromCoreData != nil){
-                coreData?.deleteFromCoreData(leagueKey: leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int)
+                coreData?.deleteFromCoreData(leagueKey: leagueFromCoreData[indexPath.section].value(forKey: "league_key") as! Int)
                 self.leagueFromCoreData = coreData?.fetchFromCoreData()
                 self.tableView.reloadData()
                 
@@ -158,6 +143,7 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
 //                fetchDataToCoreData()
             }}
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         network = Reachability.forInternetConnection()
@@ -166,30 +152,29 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
             print("connected")
             let view = self.storyboard?.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
             
-           
+            
             //tempLague?.league_name = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as! String
             //tempLague.league_logo = leagueFromCoreData[indexPath.row].value(forKey: "league_logo") as? String
             //tempLague?.league_key = leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int
             
-       // view.league?.league_name = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as! String
+            // view.league?.league_name = leagueFromCoreData[indexPath.row].value(forKey: "league_name") as! String
             //view.league = tempLague
-           // view.leagueFromCoreData = self.leagueFromCoreData[indexPath.row]
-            view.LGKey = (leagueFromCoreData[indexPath.row].value(forKey: "league_key") as! Int)
-            view.spLabel = (leagueFromCoreData[indexPath.row].value(forKey: "sport_name") as! String)
+            // view.leagueFromCoreData = self.leagueFromCoreData[indexPath.row]
+            view.LGKey = (leagueFromCoreData[indexPath.section].value(forKey: "league_key") as! Int)
+            view.spLabel = (leagueFromCoreData[indexPath.section].value(forKey: "sport_name") as! String)
             view.modalPresentationStyle = .fullScreen
             self.present(view , animated: true, completion: nil)
-          
-             }
+            
+        }
         else{
             print("Not Connected")
-           //alert
+            //alert
             let alert = UIAlertController(title: "Internet Connection Not Available", message: "Please Turn on Your Connection", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-     
-     
     }
+     
 
     func fetchDataToCoreData() {
     

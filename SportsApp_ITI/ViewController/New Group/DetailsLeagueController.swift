@@ -44,6 +44,9 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
         super.viewDidLoad()
         LeagueTitle.text = league?.league_name
         LeagueTitle.adjustsFontSizeToFitWidth = true
+        teamCollection.layer.cornerRadius = 4
+        recentComing.layer.cornerRadius = 4
+        comingCollection.layer.cornerRadius = 4
         if(spLabel == "tennis"){
             TPLabel.text = "Players"
             TPLabel.adjustsFontSizeToFitWidth = true
@@ -54,11 +57,11 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
         if (coreData?.isFavourite(leagueKey: LGKey))!
         {
             stateSelected = 1
-            favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+            favBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
             
         } else {
             stateSelected = 0
-            favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
+            favBtn.setImage(UIImage(systemName: "star"), for: .normal)
             
         }
             
@@ -91,15 +94,16 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
 
             coreData?.deleteFromCoreData(leagueKey: LGKey)
             showToast(message: "\(league?.league_name ?? "") Removed From Your Favourites")
-            favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
-    
+           // favBtn.setBackgroundImage(UIImage(named: iconFav[0]), for: .normal)
+            favBtn.setImage(UIImage(systemName: "star"), for: .normal)
             stateSelected = 0
             
         }
         else{
             
             coreData?.saveToCoreData(league: league! , sportName: spLabel)
-            favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+           // favBtn.setBackgroundImage(UIImage(named: iconFav[1]), for: .normal)
+            favBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
             showToast(message: "\(league?.league_name ?? "" ) Added to Your Favourites")
             
             stateSelected = 1
@@ -130,12 +134,13 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
            
             if spLabel == "football" {
                 cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-                
+       
                 cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             } else {
                 cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-                
+          
                 cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            
             }
             cell.timeEvent.text =  upcomingEvents?.result[indexPath.row].event_time
             cell.DateEvent.text =  upcomingEvents?.result[indexPath.row].event_date
@@ -148,13 +153,30 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
    
             if spLabel == "football" {
                 cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-                
+                cell.firstTeam.layer.cornerRadius = ( cell.firstTeam.frame.size.width ) / 2
+                cell.firstTeam.clipsToBounds = true
+              
+                cell.firstTeam.layer.borderColor = UIColor.black.cgColor
+                cell.firstTeam.layer.masksToBounds = true
                 cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.secondTeam.layer.cornerRadius = ( cell.secondTeam.frame.size.width ) / 2
+                cell.secondTeam.clipsToBounds = true
+              
+                cell.secondTeam.layer.borderColor = UIColor.black.cgColor
+                cell.secondTeam.layer.masksToBounds = true
             } else {
                 cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-                
+                cell.firstTeam.layer.cornerRadius = ( cell.firstTeam.frame.size.width ) / 2
+                cell.firstTeam.clipsToBounds = true
+              
+                cell.firstTeam.layer.borderColor = UIColor.black.cgColor
+                cell.firstTeam.layer.masksToBounds = true
                 cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
-                
+                cell.secondTeam.layer.cornerRadius = ( cell.secondTeam.frame.size.width ) / 2
+                cell.secondTeam.clipsToBounds = true
+              
+                cell.secondTeam.layer.borderColor = UIColor.black.cgColor
+                cell.secondTeam.layer.masksToBounds = true
             }
             
             

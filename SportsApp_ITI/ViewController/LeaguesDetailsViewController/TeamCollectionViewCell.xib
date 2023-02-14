@@ -24,12 +24,13 @@
                         <rect key="frame" x="0.0" y="98" width="345" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" red="0.20170861479999999" green="0.19403147700000001" blue="0.21146452430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <size key="customSize" width="201" height="84"/>
             <connections>
                 <outlet property="teamImg" destination="DIu-kB-J5G" id="tAG-Tg-KaH"/>

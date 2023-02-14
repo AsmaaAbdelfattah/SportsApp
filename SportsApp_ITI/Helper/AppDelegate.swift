@@ -18,15 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
           return
       }
         let mainStoryboard:UIStoryboard = UIStoryboard(name: "FavouriteStoryboard", bundle: nil)
+        
 
         let view = mainStoryboard.instantiateViewController(withIdentifier: "fav") as! FavTableViewController
    let navController =   UINavigationController(rootViewController: view)
     navController.modalPresentationStyle = .fullScreen
-   
+
         window.rootViewController = navController
         window.makeKeyAndVisible()
-        
-      self.inputViewController?.navigationController?.pushViewController(view, animated: true)
+        SportsViewController.notifCounter = 0
+     self.inputViewController?.navigationController?.pushViewController(view, animated: true)
    
    completionHandler()
     }

@@ -22,18 +22,22 @@ class TeamViewController: UIViewController ,gestureInteraction {
     TeamImage.kf.setImage(with: URL(string: team?.team_logo ?? "No image"), placeholder: UIImage(named: "real.png"))
    
         TeamCoach.text = "Coach Name : " + coach!
- 
-        TeamImage.layer.cornerRadius = TeamImage.frame.size.height / 2
-
+        TeamImage.layer.cornerRadius = (TeamImage.frame.size.width ) / 2
         TeamImage.clipsToBounds = true
-
-        TeamImage.layer.borderColor = UIColor.white.cgColor
-
-        TeamImage.layer.borderWidth = 2
+      
+        TeamImage.layer.borderColor = UIColor.black.cgColor
+        TeamImage.layer.masksToBounds = true
+//        TeamImage.layer.cornerRadius = TeamImage.frame.size.height / 2
+//
+//        TeamImage.clipsToBounds = true
+//
+      TeamImage.layer.borderColor = UIColor.white.cgColor
+//
+//        TeamImage.layer.borderWidth = 2
         let nib = UINib(nibName: "CustomSportCollectionViewCell", bundle: nil)
         teamPlayerCollection.register(nib, forCellWithReuseIdentifier: "cell")
         
-         self.teamPlayerCollection.reloadData()
+     //    self.teamPlayerCollection.reloadData()
     }
     func gestureInteract(){
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
@@ -66,7 +70,8 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
 
         cell.imgForSport.kf.setImage(with: URL(string: team?.players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "star.png"))
         cell.layer.borderWidth = CGFloat(5)
-        cell.layer.cornerRadius = CGFloat(20)
+    cell.layer.cornerRadius = CGFloat(20)
+      
 
         return cell
     }
@@ -78,10 +83,12 @@ extension TeamViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/5) - 15)
+        return CGSize(width: (UIScreen.main.bounds.size.width/2) , height: (UIScreen.main.bounds.size.height/5) )
 
     }
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 14.0
+    }
   }
 
     
