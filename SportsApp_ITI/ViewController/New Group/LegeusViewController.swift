@@ -51,20 +51,28 @@ class LegeusViewController: UIViewController {
 extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchedLeagues?.count ?? 0
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return CGFloat(1)
+        }
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView : UIView = UIView()
+            headerView.backgroundColor = UIColor.clear
+            return headerView
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("/////\(indexPath.row)/////////")
+        print("/////\(indexPath.section)/////////")
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
 
-        cell.layer.borderWidth = CGFloat(2)
-        cell.layer.cornerRadius = CGFloat(10)
         
-        cell.leagueImg.kf.setImage(with: URL(string: (searchedLeagues?[indexPath.row].league_logo) ?? "no image"), placeholder: UIImage(named: "youtube.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.layer.cornerRadius = cell.frame.height/3
+        
+        cell.leagueImg.kf.setImage(with: URL(string: (searchedLeagues?[indexPath.section].league_logo) ?? "no image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         
     
         cell.leagueImg?.layer.cornerRadius = 30
@@ -72,7 +80,7 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
        // cell.leagueImg?.layer.borderColor = UIColor.white.cgColor
       //  cell.leagueImg?.layer.masksToBounds = false
         
-        cell.leagueName.text = searchedLeagues?[indexPath.row].league_name
+        cell.leagueName.text = searchedLeagues?[indexPath.section].league_name
       
         return cell
     }
@@ -87,9 +95,9 @@ extension LegeusViewController : UITableViewDelegate, UITableViewDataSource {
         
         let legeusDetailsObj = storyBoard.instantiateViewController(withIdentifier: "Details") as! DetailsLeagueController
         
-        legeusDetailsObj.LGKey = (searchedLeagues?[indexPath.row].league_key)!
+        legeusDetailsObj.LGKey = (searchedLeagues?[indexPath.section].league_key)!
         legeusDetailsObj.spLabel = sport
-        legeusDetailsObj.league = searchedLeagues?[indexPath.row]
+        legeusDetailsObj.league = searchedLeagues?[indexPath.section]
         
         legeusDetailsObj.modalPresentationStyle = .fullScreen
         self.present(legeusDetailsObj , animated: true, completion: nil)

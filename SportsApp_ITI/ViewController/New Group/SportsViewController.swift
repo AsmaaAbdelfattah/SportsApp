@@ -32,7 +32,7 @@ class SportsViewController: UIViewController {
         
         sportsName = ["football" , "basketball" , "cricket" ,  "tennis" ]
         
-
+        
         let nib = UINib(nibName: "CustomSportCollectionViewCell", bundle: nil)
         Sportscollection.register(nib, forCellWithReuseIdentifier: "cell")
         
@@ -55,7 +55,7 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomSportCollectionViewCell
-        cell.layer.borderWidth = CGFloat(5)
+
         cell.layer.cornerRadius = CGFloat(20)
         
         cell.nameForSport.text = sportsName?[indexPath.row] ?? ""
@@ -67,7 +67,7 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        
-        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/3) - 15)
+        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/3) - 30)
        
     }
     
