@@ -16,6 +16,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     var LGKey : Int = 0
     var leagueFromCoreData : [NSManagedObject]!
     var spLabel : String = ""
+    var leagueName : String = ""
     @IBOutlet weak var TPLabel: UILabel!
     var managedContext : NSManagedObjectContext!
   
@@ -42,9 +43,9 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height*700)
+        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 700)
         
-        LeagueTitle.text = league?.league_name
+        LeagueTitle.text = leagueName
         LeagueTitle.adjustsFontSizeToFitWidth = true
         teamCollection.layer.cornerRadius = 4
         recentComing.layer.cornerRadius = 4
@@ -135,11 +136,11 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "coming", for: indexPath) as! comCollectionViewCell
            
             if spLabel == "football" {
-                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
        
-                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             } else {
-                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
           
                 cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             
@@ -154,26 +155,26 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recent", for: indexPath) as! recCollectionViewCell
    
             if spLabel == "football" {
-                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].home_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
                 cell.firstTeam.layer.cornerRadius = ( cell.firstTeam.frame.size.width ) / 2
                 cell.firstTeam.clipsToBounds = true
               
                 cell.firstTeam.layer.borderColor = UIColor.black.cgColor
                 cell.firstTeam.layer.masksToBounds = true
-                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].away_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
                 cell.secondTeam.layer.cornerRadius = ( cell.secondTeam.frame.size.width ) / 2
                 cell.secondTeam.clipsToBounds = true
               
                 cell.secondTeam.layer.borderColor = UIColor.black.cgColor
                 cell.secondTeam.layer.masksToBounds = true
             } else {
-                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.firstTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
                 cell.firstTeam.layer.cornerRadius = ( cell.firstTeam.frame.size.width ) / 2
                 cell.firstTeam.clipsToBounds = true
               
                 cell.firstTeam.layer.borderColor = UIColor.black.cgColor
                 cell.firstTeam.layer.masksToBounds = true
-                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.secondTeam.kf.setImage(with: URL(string: latestEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
                 cell.secondTeam.layer.cornerRadius = ( cell.secondTeam.frame.size.width ) / 2
                 cell.secondTeam.clipsToBounds = true
               
@@ -193,14 +194,14 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
        
            
         
-            cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].players?[indexPath.row].player_image ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         
            return cell
         }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "team", for: indexPath) as! TeamCollectionViewCell
        
         
-        cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+        cell.teamImg.kf.setImage(with: URL(string: teams?.result[indexPath.row].team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
         
            return cell
        

@@ -16,10 +16,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        gifImg.backgroundColor = .black
-        gifImg.layer.cornerRadius = 100
+       
         do {
-            let gif = try UIImage(gifName: "splash3.gif")
+            let gif = try UIImage(gifName: "ss.gif")
             self.gifImg.setGifImage(gif, loopCount: -1) // Will loop forever
         } catch {
             print(error)
