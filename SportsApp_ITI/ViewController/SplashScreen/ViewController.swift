@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         
        
         do {
-            let gif = try UIImage(gifName: "ss.gif")
+            let gif = try UIImage(gifName: "splash3.gif")
             self.gifImg.setGifImage(gif, loopCount: -1) // Will loop forever
         } catch {
             print(error)
