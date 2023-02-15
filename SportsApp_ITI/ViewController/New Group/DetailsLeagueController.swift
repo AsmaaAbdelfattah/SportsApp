@@ -43,7 +43,7 @@ class DetailsLeagueController: UIViewController,gestureInteraction , ToastMessag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 700)
+        scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 100)
         
         LeagueTitle.text = leagueName
         LeagueTitle.adjustsFontSizeToFitWidth = true
