@@ -50,7 +50,7 @@
         <scene sceneID="nig-by-cD3">
             <objects>
                 <viewController storyboardIdentifier="Details" id="X2v-zh-kxs" customClass="DetailsLeagueController" customModule="SportsApp_ITI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WLA-sK-2at">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="WLA-sK-2at">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -81,7 +81,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" id="uf2-MM-Md4">
-                                <rect key="frame" x="0.0" y="135" width="390" height="675"/>
+                                <rect key="frame" x="0.0" y="167" width="389" height="676"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfN-aS-lS3">
@@ -187,9 +187,7 @@
                         <constraints>
                             <constraint firstItem="78d-be-H8O" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" constant="16" id="8bI-Ca-7T1"/>
                             <constraint firstItem="xPl-E4-l0U" firstAttribute="bottom" secondItem="uf2-MM-Md4" secondAttribute="bottom" id="LBz-UG-mgr"/>
-                            <constraint firstAttribute="trailing" secondItem="uf2-MM-Md4" secondAttribute="trailing" id="P73-O4-yd0"/>
                             <constraint firstItem="mWl-PI-Ihb" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" constant="16" id="UFS-lS-Tth"/>
-                            <constraint firstItem="uf2-MM-Md4" firstAttribute="leading" secondItem="WLA-sK-2at" secondAttribute="leading" id="l06-ch-Nv0"/>
                             <constraint firstItem="78d-be-H8O" firstAttribute="leading" secondItem="xPl-E4-l0U" secondAttribute="leading" constant="8" id="l0K-kS-cAp"/>
                             <constraint firstItem="mWl-PI-Ihb" firstAttribute="leading" secondItem="78d-be-H8O" secondAttribute="trailing" constant="16" id="qXZ-1E-T5y"/>
                             <constraint firstItem="uf2-MM-Md4" firstAttribute="top" secondItem="xPl-E4-l0U" secondAttribute="top" constant="88" id="rEZ-l5-ZJq"/>

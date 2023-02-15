@@ -142,7 +142,7 @@ extension DetailsLeagueController : UICollectionViewDelegate , UICollectionViewD
             } else {
                 cell.team1.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_home_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
           
-                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "real.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+                cell.team2.kf.setImage(with: URL(string: upcomingEvents?.result[indexPath.row].event_away_team_logo ?? "No image"), placeholder: UIImage(named: "none.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             
             }
             cell.timeEvent.text =  upcomingEvents?.result[indexPath.row].event_time
