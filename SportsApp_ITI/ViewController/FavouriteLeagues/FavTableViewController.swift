@@ -162,6 +162,7 @@ class FavTableViewController: UITableViewController ,gestureInteraction,Notifica
             // view.leagueFromCoreData = self.leagueFromCoreData[indexPath.row]
             view.LGKey = (leagueFromCoreData[indexPath.section].value(forKey: "league_key") as! Int)
             view.spLabel = (leagueFromCoreData[indexPath.section].value(forKey: "sport_name") as! String)
+            view.leagueName = (leagueFromCoreData[indexPath.section].value(forKey: "league_name") as! String)
             view.modalPresentationStyle = .fullScreen
             self.present(view , animated: true, completion: nil)
             

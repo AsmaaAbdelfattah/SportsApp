@@ -25,11 +25,11 @@ class PlayersViewController: UIViewController ,gestureInteraction {
         super.viewDidLoad()
         gestureInteract()
         // Do any additional setup after loading the view.
-        plNumber.text = ( "Player Number " + (number ?? "unKnown"))
-        goals.text = ("Goal Numbers " + (goalNum ?? "unKnown"))
+        plNumber.text = ( "Player Number:   " + (number ?? "unKnown"))
+        goals.text =    ("Goal Numbers:     " + (goalNum ?? "unKnown"))
         redCards.text = rCards ?? "unKnown"
       
-        playerName.text = ("Player Name : " + (name ?? "unKnown"))
+        playerName.text = (name ?? "unKnown")
          yellowCards.text = yCards ?? "unKnown"
         
         playerImg.kf.setImage(with: URL(string: img ?? "No image"), placeholder: UIImage(named: "none.png"))
